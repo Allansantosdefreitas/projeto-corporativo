@@ -1,0 +1,30 @@
+Opt1: Sistema Casamento:
+	- papeis: noivo, noiva, convidado.
+	- funcionalidades:
+
+		- lista de tarefas (datas) noiva e noivo (individual);
+			- cadasatrar tarefas (escolher igreja, agendar viagem, chá de cozinha, verificar igreja, fazer plano de mesas, fazer mala lua de mel, dia do casamento)
+			- marcar tarefas pendentes como feitas;
+			
+		- profissionais e serviços
+			- contratar serviço (buffet, fotografia, música, salão de festas, carro, vestido)
+			- pagar serviço;
+		- convidados e convites;
+		- mostrar orçamento total (soma de todos serviços contratados)
+
+
+https://www.casamentos.com.br/gestor-convidados-casamento
+https://www.guiadecasamento.com.br/planejamento/assessoria-cerimonial/agenda-da-noiva#12_meses
+http://delas.ig.com.br/noivas/agenda/10meses/
+
+wireframes:
+tarefas: https://wireframe.cc/Ji2iG9
+
+
+Opt2: Sistema Clínica Veterinária (cães e gatos):
+	- Cadastrar pet;
+	- Marcar consulta médica pet;
+	- atender consulta
+	- cancelar consulta;
+	- comprar produtos
+	
