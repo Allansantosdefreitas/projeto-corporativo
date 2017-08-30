@@ -3,14 +3,14 @@ Opt1: Sistema Casamento:
 	- funcionalidades:
 
 		- lista de tarefas (datas) noiva e noivo (individual);
-			- cadasatrar tarefas (escolher igreja, agendar viagem, ch· de cozinha, verificar igreja, fazer plano de mesas, fazer mala lua de mel, dia do casamento)
+			- cadasatrar tarefas (escolher igreja, agendar viagem, ch√° de cozinha, verificar igreja, fazer plano de mesas, fazer mala lua de mel, dia do casamento)
 			- marcar tarefas pendentes como feitas;
 			
-		- profissionais e serviÁos
-			- contratar serviÁo (buffet, fotografia, m˙sica, sal„o de festas, carro, vestido)
-			- pagar serviÁo;
+		- profissionais e servi√ßos
+			- contratar servi√ßo (buffet, fotografia, m√∫sica, sal√£o de festas, carro, vestido)
+			- pagar servi√ßo;
 		- convidados e convites;
-		- mostrar orÁamento total (soma de todos serviÁos contratados)
+		- mostrar or√ßamento total (soma de todos servi√ßos contratados)
 
 
 https://www.casamentos.com.br/gestor-convidados-casamento
@@ -19,11 +19,12 @@ http://delas.ig.com.br/noivas/agenda/10meses/
 
 wireframes:
 tarefas: https://wireframe.cc/Ji2iG9
+tela inicial: https://wireframe.cc/E2AjTX
 
 
-Opt2: Sistema ClÌnica Veterin·ria (c„es e gatos):
+Opt2: Sistema Cl√≠nica Veterin√°ria (c√£es e gatos):
 	- Cadastrar pet;
-	- Marcar consulta mÈdica pet;
+	- Marcar consulta m√©dica pet;
 	- atender consulta
 	- cancelar consulta;
 	- comprar produtos
