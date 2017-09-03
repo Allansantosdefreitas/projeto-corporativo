@@ -3,15 +3,15 @@ Opt1: Sistema Casamento:
 	- funcionalidades:
 
 		- lista de tarefas (datas) noiva e noivo (individual);
-			- cadasatrar tarefas (escolher igreja, agendar viagem, chÃ¡ de cozinha, verificar igreja, fazer plano de mesas, fazer mala lua de mel, dia do casamento)
+			- cadasatrar tarefas (escolher igreja, agendar viagem, chá de cozinha, verificar igreja, 
+				fazer plano de mesas, fazer mala lua de mel, dia do casamento)
 			- marcar tarefas pendentes como feitas;
 			
-		- profissionais e serviÃ§os
-			- contratar serviÃ§o (buffet, fotografia, mÃºsica, salÃ£o de festas, carro, vestido)
-			- pagar serviÃ§o;
+		- profissionais e serviços
+			- contratar serviço (buffet, fotografia, música, salão de festas, carro, vestido)
+			- pagar serviço;
 		- convidados e convites;
-		- mostrar orÃ§amento total (soma de todos serviÃ§os contratados)
-
+		- mostrar orçamento total (soma de todos serviços contratados)
 
 https://www.casamentos.com.br/gestor-convidados-casamento
 https://www.guiadecasamento.com.br/planejamento/assessoria-cerimonial/agenda-da-noiva#12_meses
@@ -19,13 +19,37 @@ http://delas.ig.com.br/noivas/agenda/10meses/
 
 wireframes:
 tarefas: https://wireframe.cc/Ji2iG9
-tela inicial: https://wireframe.cc/E2AjTX
-
-
-Opt2: Sistema ClÃ­nica VeterinÃ¡ria (cÃ£es e gatos):
-	- Cadastrar pet;
-	- Marcar consulta mÃ©dica pet;
-	- atender consulta
-	- cancelar consulta;
-	- comprar produtos
 	
+requisitos
+USUÁRIO
+CRUD usuário (noivo, noiva, profissional, convidado)
+	CRUD noivo(a), 
+	CRUD profissional,
+	CRUD convidado
+
+SESSÃO
+login e sessão
+
+CERIMONIA E ORGANIZAÇÃO
+CRUD casamento (uma cerimonia tem dois noivos, n tarefas (incluindo a data da cerimonia), n serviços, n profissionais  e n convidados e 1 convite)
+
+	"noivo ou noiva encontra o conjuge por um id ou envia um convite?" tem que ver outra forma de vincular noivo e noiva a um casamento específico
+	OU 
+	"um usuário apenas para ambos os  conjuges" (NÃO)
+		"tem coisas na agenda de tarefas que um conjuge não pode saber..a  agenda é privada, visto que tem surpresas"
+
+CRUD tarefa
+CRUD serviço
+disponibilizar serviço
+procurar serviço
+procurar profissional
+contratar serviço
+gerenciar tarefas(concluir, cancelar, por como pendente)
+gerenciar custos de serviços contratados
+
+CONVITES
+
+CRUD convite
+enviar convite
+gerenciar convidados
+
