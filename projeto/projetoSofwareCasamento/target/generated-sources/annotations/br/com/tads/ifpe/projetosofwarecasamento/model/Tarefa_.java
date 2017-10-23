@@ -8,13 +8,13 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-10-23T11:42:35")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-10-23T19:17:14")
 @StaticMetamodel(Tarefa.class)
 public class Tarefa_ { 
 
     public static volatile SingularAttribute<Tarefa, Date> data;
     public static volatile SingularAttribute<Tarefa, String> titulo;
-    public static volatile SingularAttribute<Tarefa, Integer> idTarefa;
+    public static volatile SingularAttribute<Tarefa, Long> idTarefa;
     public static volatile SingularAttribute<Tarefa, Servico> servico;
     public static volatile SingularAttribute<Tarefa, Casamento> casamento;
     public static volatile SingularAttribute<Tarefa, String> descricao;

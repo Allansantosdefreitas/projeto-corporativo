@@ -16,7 +16,7 @@ public class Servico implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idServico;
+	private Long idServico;
 
 	private String descricao;
 
@@ -38,11 +38,11 @@ public class Servico implements Serializable {
 	public Servico() {
 	}
 
-	public int getIdServico() {
+	public Long getIdServico() {
 		return this.idServico;
 	}
 
-	public void setIdServico(int idServico) {
+	public void setIdServico(Long idServico) {
 		this.idServico = idServico;
 	}
 

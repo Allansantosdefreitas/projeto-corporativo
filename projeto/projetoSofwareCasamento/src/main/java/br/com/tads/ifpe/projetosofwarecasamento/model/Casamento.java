@@ -16,7 +16,7 @@ public class Casamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idCasamento;
+	private Long idCasamento;
 
 	private double orcamentoTotal;
 
@@ -39,11 +39,11 @@ public class Casamento implements Serializable {
 	public Casamento() {
 	}
 
-	public int getIdCasamento() {
+	public Long getIdCasamento() {
 		return this.idCasamento;
 	}
 
-	public void setIdCasamento(int idCasamento) {
+	public void setIdCasamento(Long idCasamento) {
 		this.idCasamento = idCasamento;
 	}
 

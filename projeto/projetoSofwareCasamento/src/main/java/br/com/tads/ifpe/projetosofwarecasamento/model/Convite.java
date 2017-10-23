@@ -15,7 +15,7 @@ public class Convite implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idConvite;
+	private Long idConvite;
 
 	private String destinatarios;
 
@@ -28,11 +28,11 @@ public class Convite implements Serializable {
 	public Convite() {
 	}
 
-	public int getIdConvite() {
+	public Long getIdConvite() {
 		return this.idConvite;
 	}
 
-	public void setIdConvite(int idConvite) {
+	public void setIdConvite(Long idConvite) {
 		this.idConvite = idConvite;
 	}
 

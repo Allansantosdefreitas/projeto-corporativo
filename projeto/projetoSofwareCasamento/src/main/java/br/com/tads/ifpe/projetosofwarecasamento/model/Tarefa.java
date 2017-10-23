@@ -16,7 +16,7 @@ public class Tarefa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idTarefa;
+	private Long idTarefa;
 
 	@Temporal(TemporalType.DATE)
 	private Date data;
@@ -38,11 +38,11 @@ public class Tarefa implements Serializable {
 	public Tarefa() {
 	}
 
-	public int getIdTarefa() {
+	public Long getIdTarefa() {
 		return this.idTarefa;
 	}
 
-	public void setIdTarefa(int idTarefa) {
+	public void setIdTarefa(Long idTarefa) {
 		this.idTarefa = idTarefa;
 	}
 
