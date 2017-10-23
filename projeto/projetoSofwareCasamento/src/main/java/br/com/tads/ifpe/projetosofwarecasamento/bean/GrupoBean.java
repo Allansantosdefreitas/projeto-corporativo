@@ -11,14 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import org.omnifaces.util.Messages;
 
 /**
  *
  * @author aluno
  */
-@Stateless
+@ManagedBean(name = "grupoBean")
+@SessionScoped
 public class GrupoBean {
     
     private Grupo grupo;
