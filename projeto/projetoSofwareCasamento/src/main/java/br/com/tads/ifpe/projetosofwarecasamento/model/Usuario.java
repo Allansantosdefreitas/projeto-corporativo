@@ -9,9 +9,11 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name = "TB_usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "disc_usuario", discriminatorType = DiscriminatorType.STRING, length = 3) // 3 � o tamanho do campo discriminator (disc_usuario)
+@DiscriminatorColumn(name = "disc_usuario", discriminatorType = DiscriminatorType.STRING, length = 4) 
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@Access(AccessType.FIELD)
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 

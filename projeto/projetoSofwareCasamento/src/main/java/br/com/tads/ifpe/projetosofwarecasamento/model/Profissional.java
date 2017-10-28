@@ -10,18 +10,17 @@ import java.util.List;
  * 
  */
 @Entity
-@DiscriminatorValue(value = "pro")
+@Table(name = "TB_profissional")
+@DiscriminatorValue(value = "PROF")
 @PrimaryKeyJoinColumn(name = "idUsuarioProfissional", referencedColumnName = "idUsuario")
 @NamedQuery(name="Profissional.findAll", query="SELECT p FROM Profissional p")
 public class Profissional extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private int idUsuarioProfissional;
-
+        
 	//bi-directional many-to-one association to Servico
-	@OneToMany(mappedBy="profissional")
+	@OneToMany(mappedBy="profissional", fetch = FetchType.LAZY, 
+                cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Servico> servicos;
 
 	public Profissional() {

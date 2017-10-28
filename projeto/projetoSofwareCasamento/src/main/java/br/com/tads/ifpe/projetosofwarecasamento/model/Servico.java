@@ -17,6 +17,8 @@ public class Servico implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idServico;
+        
+	private String titulo;
 
 	private String descricao;
 
@@ -24,15 +26,14 @@ public class Servico implements Serializable {
 
 	private Boolean statusDisponibilizado;
 
-	private String titulo;
-
 	//bi-directional many-to-one association to Profissional
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="Profissional_idUsuarioProfissional")
+	@ManyToOne(fetch=FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ID_profissional", referencedColumnName = "idUsuarioProfissional")
 	private Profissional profissional;
 
 	//bi-directional many-to-one association to Tarefa
-	@OneToMany(mappedBy="servico")
+	@OneToMany(mappedBy="servico", fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL, orphanRemoval = false)
 	private List<Tarefa> tarefas;
 
 	public Servico() {
@@ -94,18 +95,18 @@ public class Servico implements Serializable {
 		this.tarefas = tarefas;
 	}
 
-	public Tarefa addTarefa(Tarefa tarefa) {
-		getTarefas().add(tarefa);
-		tarefa.setServico(this);
-
-		return tarefa;
-	}
-
-	public Tarefa removeTarefa(Tarefa tarefa) {
-		getTarefas().remove(tarefa);
-		tarefa.setServico(null);
-
-		return tarefa;
-	}
+//	public Tarefa addTarefa(Tarefa tarefa) {
+//		getTarefas().add(tarefa);
+//		tarefa.setServico(this);
+//
+//		return tarefa;
+//	}
+//
+//	public Tarefa removeTarefa(Tarefa tarefa) {
+//		getTarefas().remove(tarefa);
+//		tarefa.setServico(null);
+//
+//		return tarefa;
+//	}
 
 }

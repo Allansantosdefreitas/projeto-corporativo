@@ -22,9 +22,12 @@ public class Convite implements Serializable {
 	private String mensagem;
 
 	//bi-directional one-to-one association to Casamento
-	@OneToOne(cascade={CascadeType.PERSIST})
+	@OneToOne(mappedBy = "convite", optional = false)
 	private Casamento casamento;
 
+        // convite não tem atributo convidado..o relacionamento é unidirecional
+           // com lado dominante em convidado
+        
 	public Convite() {
 	}
 

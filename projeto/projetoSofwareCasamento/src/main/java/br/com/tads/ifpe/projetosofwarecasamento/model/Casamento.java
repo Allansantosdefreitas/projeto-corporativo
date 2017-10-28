@@ -5,11 +5,8 @@ import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the casamento database table.
- * 
- */
 @Entity
+@Table(name = "TB_casamento")
 @NamedQuery(name="Casamento.findAll", query="SELECT c FROM Casamento c")
 public class Casamento implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,23 +15,30 @@ public class Casamento implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idCasamento;
 
-	private double orcamentoTotal;
+	//bi-directional many-to-one association to Tarefa
+	@OneToMany(mappedBy="casamento", fetch = FetchType.LAZY, 
+                cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Tarefa> tarefas;
 
+        //one-to-one association to Despesa
+        @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = true)
+        @JoinColumn(name = "ID_despesa", referencedColumnName = "idDespesa")
+        private Despesa despesa;
+        
 	//bi-directional many-to-one association to Conjuge
-	@OneToMany(mappedBy="casamento", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy="casamento", fetch = FetchType.LAZY, 
+                cascade = CascadeType.PERSIST, orphanRemoval = true)
 	private List<Conjuge> conjuges;
 
 	//bi-directional many-to-one association to Convidado
-	@OneToMany(mappedBy="casamento")
+	@OneToMany(mappedBy="casamento",  fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Convidado> convidados;
-
-	//bi-directional many-to-one association to Tarefa
-	@OneToMany(mappedBy="casamento")
-	private List<Tarefa> tarefas;
-
-	//bi-directional one-to-one association to Convite
-	@OneToOne(mappedBy="casamento", cascade={CascadeType.PERSIST})
-	private Convite convite;
+        
+        //one-to-one association to Convite
+        @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+        @JoinColumn(name = "ID_convite", referencedColumnName = "idConvite")
+        private Convite convite;
 
 	public Casamento() {
 	}
@@ -47,57 +51,51 @@ public class Casamento implements Serializable {
 		this.idCasamento = idCasamento;
 	}
 
-	public double getOrcamentoTotal() {
-		return this.orcamentoTotal;
-	}
+	
 
-	public void setOrcamentoTotal(double orcamentoTotal) {
-		this.orcamentoTotal = orcamentoTotal;
-	}
+//	public List<Conjuge> getConjuges() {
+//		return this.conjuges;
+//	}
+//
+//	public void setConjuges(List<Conjuge> conjuges) {
+//		this.conjuges = conjuges;
+//	}
 
-	public List<Conjuge> getConjuges() {
-		return this.conjuges;
-	}
+//	public Conjuge addConjuge(Conjuge conjuge) {
+//		getConjuges().add(conjuge);
+//		conjuge.setCasamento(this);
+//
+//		return conjuge;
+//	}
+//
+//	public Conjuge removeConjuge(Conjuge conjuge) {
+//		getConjuges().remove(conjuge);
+//		conjuge.setCasamento(null);
+//
+//		return conjuge;
+//	}
 
-	public void setConjuges(List<Conjuge> conjuges) {
-		this.conjuges = conjuges;
-	}
+//	public List<Convidado> getConvidados() {
+//		return this.convidados;
+//	}
+//
+//	public void setConvidados(List<Convidado> convidados) {
+//		this.convidados = convidados;
+//	}
 
-	public Conjuge addConjuge(Conjuge conjuge) {
-		getConjuges().add(conjuge);
-		conjuge.setCasamento(this);
-
-		return conjuge;
-	}
-
-	public Conjuge removeConjuge(Conjuge conjuge) {
-		getConjuges().remove(conjuge);
-		conjuge.setCasamento(null);
-
-		return conjuge;
-	}
-
-	public List<Convidado> getConvidados() {
-		return this.convidados;
-	}
-
-	public void setConvidados(List<Convidado> convidados) {
-		this.convidados = convidados;
-	}
-
-	public Convidado addConvidado(Convidado convidado) {
-		getConvidados().add(convidado);
-		convidado.setCasamento(this);
-
-		return convidado;
-	}
-
-	public Convidado removeConvidado(Convidado convidado) {
-		getConvidados().remove(convidado);
-		convidado.setCasamento(null);
-
-		return convidado;
-	}
+//	public Convidado addConvidado(Convidado convidado) {
+//		getConvidados().add(convidado);
+//		convidado.setCasamento(this);
+//
+//		return convidado;
+//	}
+//
+//	public Convidado removeConvidado(Convidado convidado) {
+//		getConvidados().remove(convidado);
+//		convidado.setCasamento(null);
+//
+//		return convidado;
+//	}
 
 	public List<Tarefa> getTarefas() {
 		return this.tarefas;
@@ -107,26 +105,26 @@ public class Casamento implements Serializable {
 		this.tarefas = tarefas;
 	}
 
-	public Tarefa addTarefa(Tarefa tarefa) {
-		getTarefas().add(tarefa);
-		tarefa.setCasamento(this);
-
-		return tarefa;
-	}
-
-	public Tarefa removeTarefa(Tarefa tarefa) {
-		getTarefas().remove(tarefa);
-		tarefa.setCasamento(null);
-
-		return tarefa;
-	}
-
-	public Convite getConvite() {
-		return this.convite;
-	}
-
-	public void setConvite(Convite convite) {
-		this.convite = convite;
-	}
+//	public Tarefa addTarefa(Tarefa tarefa) {
+//		getTarefas().add(tarefa);
+//		tarefa.setCasamento(this);
+//
+//		return tarefa;
+//	}
+//
+//	public Tarefa removeTarefa(Tarefa tarefa) {
+//		getTarefas().remove(tarefa);
+//		tarefa.setCasamento(null);
+//
+//		return tarefa;
+//	}
+//
+//	public Convite getConvite() {
+//		return this.convite;
+//	}
+//
+//	public void setConvite(Convite convite) {
+//		this.convite = convite;
+//	}
 
 }
