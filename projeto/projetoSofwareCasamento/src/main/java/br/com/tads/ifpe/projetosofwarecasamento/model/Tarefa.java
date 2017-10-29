@@ -70,6 +70,38 @@ public class Tarefa implements Serializable {
         this.descricao = descricao;
     }
 
+    public StatusTarefa getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(StatusTarefa status) {
+        this.status = status;
+    }
+
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Casamento getCasamento() {
+        return this.casamento;
+    }
+
+    public void setCasamento(Casamento casamento) {
+        this.casamento = casamento;
+    }
+
+    public Servico getServico() {
+        return this.servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -95,35 +127,4 @@ public class Tarefa implements Serializable {
         return true;
     }
 
-    public StatusTarefa getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(StatusTarefa status) {
-        this.status = status;
-    }
-
-    public String getTitulo() {
-        return this.titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-//	public Casamento getCasamento() {
-//		return this.casamento;
-//	}
-//
-//	public void setCasamento(Casamento casamento) {
-//		this.casamento = casamento;
-//	}
-//
-//	public Servico getServico() {
-//		return this.servico;
-//	}
-//
-//	public void setServico(Servico servico) {
-//		this.servico = servico;
-//	}
 }

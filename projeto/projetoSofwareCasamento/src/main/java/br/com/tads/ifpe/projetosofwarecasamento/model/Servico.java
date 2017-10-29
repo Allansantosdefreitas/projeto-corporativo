@@ -3,110 +3,136 @@ package br.com.tads.ifpe.projetosofwarecasamento.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
-
+import java.util.Objects;
 
 /**
  * The persistent class for the servico database table.
- * 
+ *
  */
 @Entity
-@NamedQuery(name="Servico.findAll", query="SELECT s FROM Servico s")
+@NamedQuery(name = "Servico.findAll", query = "SELECT s FROM Servico s")
 public class Servico implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idServico;
-        
-	private String titulo;
+    private static final long serialVersionUID = 1L;
 
-	private String descricao;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idServico;
 
-	private float preco;
+    private String titulo;
 
-	private Boolean statusDisponibilizado;
+    private String descricao;
 
-	//bi-directional many-to-one association to Profissional
-	@ManyToOne(fetch=FetchType.EAGER, optional = false)
-	@JoinColumn(name = "ID_profissional", referencedColumnName = "idUsuarioProfissional")
-	private Profissional profissional;
+    private float preco;
 
-	//bi-directional many-to-one association to Tarefa
-	@OneToMany(mappedBy="servico", fetch = FetchType.LAZY,
-                cascade = CascadeType.ALL, orphanRemoval = false)
-	private List<Tarefa> tarefas;
+    private Boolean statusDisponibilizado;
 
-	public Servico() {
-	}
+    //bi-directional many-to-one association to Profissional
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ID_profissional", referencedColumnName = "idUsuarioProfissional")
+    private Profissional profissional;
 
-	public Long getIdServico() {
-		return this.idServico;
-	}
+    //bi-directional many-to-one association to Tarefa
+    @OneToMany(mappedBy = "servico", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Tarefa> tarefas;
 
-	public void setIdServico(Long idServico) {
-		this.idServico = idServico;
-	}
+    public Servico() {
+    }
 
-	public String getDescricao() {
-		return this.descricao;
-	}
+    public Long getIdServico() {
+        return this.idServico;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public void setIdServico(Long idServico) {
+        this.idServico = idServico;
+    }
 
-	public float getPreco() {
-		return this.preco;
-	}
+    public String getDescricao() {
+        return this.descricao;
+    }
 
-	public void setPreco(float preco) {
-		this.preco = preco;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public Boolean getStatusDisponibilizado() {
-		return this.statusDisponibilizado;
-	}
+    public float getPreco() {
+        return this.preco;
+    }
 
-	public void setStatusDisponibilizado(Boolean statusDisponibilizado) {
-		this.statusDisponibilizado = statusDisponibilizado;
-	}
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
 
-	public String getTitulo() {
-		return this.titulo;
-	}
+    public Boolean getStatusDisponibilizado() {
+        return this.statusDisponibilizado;
+    }
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
+    public void setStatusDisponibilizado(Boolean statusDisponibilizado) {
+        this.statusDisponibilizado = statusDisponibilizado;
+    }
 
-	public Profissional getProfissional() {
-		return this.profissional;
-	}
+    public String getTitulo() {
+        return this.titulo;
+    }
 
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
-	}
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-	public List<Tarefa> getTarefas() {
-		return this.tarefas;
-	}
+    public Profissional getProfissional() {
+        return this.profissional;
+    }
 
-	public void setTarefas(List<Tarefa> tarefas) {
-		this.tarefas = tarefas;
-	}
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
+    }
 
-//	public Tarefa addTarefa(Tarefa tarefa) {
-//		getTarefas().add(tarefa);
-//		tarefa.setServico(this);
-//
-//		return tarefa;
-//	}
-//
-//	public Tarefa removeTarefa(Tarefa tarefa) {
-//		getTarefas().remove(tarefa);
-//		tarefa.setServico(null);
-//
-//		return tarefa;
-//	}
+    public List<Tarefa> getTarefas() {
+        return this.tarefas;
+    }
+
+    public void setTarefas(List<Tarefa> tarefas) {
+        this.tarefas = tarefas;
+    }
+
+    public Tarefa addTarefa(Tarefa tarefa) {
+        this.getTarefas().add(tarefa);
+        tarefa.setServico(this);
+
+        return tarefa;
+    }
+
+    public Tarefa removeTarefa(Tarefa tarefa) {
+        this.getTarefas().remove(tarefa);
+        tarefa.setServico(null);
+
+        return tarefa;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.idServico);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Servico other = (Servico) obj;
+        if (!Objects.equals(this.idServico, other.idServico)) {
+            return false;
+        }
+        return true;
+    }
 
 }

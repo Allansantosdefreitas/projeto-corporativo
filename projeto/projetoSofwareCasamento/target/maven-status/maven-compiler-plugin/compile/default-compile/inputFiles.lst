@@ -10,6 +10,7 @@ C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\proj
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\model\StatusConvidado.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\ConjugeBean.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\TarefaBean.java
+C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\model\Despesa.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\repository\CasamentoRepository.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\ProfissionalBean.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\ServicoBean.java
@@ -21,6 +22,7 @@ C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\proj
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\repository\UsuarioRepository.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\CasamentoBean.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\repository\ServicoRepository.java
+C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\repository\Test.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\model\StatusTarefa.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\bean\ConviteBean.java
 C:\Users\Allan Santos\Documents\Repos\projeto-corporativo-casamento\projeto\projetoSofwareCasamento\src\main\java\br\com\tads\ifpe\projetosofwarecasamento\model\Convidado.java

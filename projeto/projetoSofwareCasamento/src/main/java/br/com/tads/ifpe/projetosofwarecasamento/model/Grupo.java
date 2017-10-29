@@ -80,6 +80,7 @@ public class Grupo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "br.com.sistemapetshop.model.Grupo[ idGrupo=" + idGrupo + " ]";
+		return "br.com.tads.ifpe.projetosoftwarecasamento.model.Grupo[ idGrupo=" + idGrupo + " ]";
 	}
+        
 }

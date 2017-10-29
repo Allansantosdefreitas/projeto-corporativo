@@ -11,7 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class Repository<Entidade> {
 
-    private EntityManagerFactory EMF = Persistence.createEntityManagerFactory("projetoCasamentoWeb");
+    private EntityManagerFactory EMF = Persistence.createEntityManagerFactory("projetoSoftwareCasamentoPU");
     private EntityManager em = EMF.createEntityManager();
 
     private final Class<Entidade> classe;

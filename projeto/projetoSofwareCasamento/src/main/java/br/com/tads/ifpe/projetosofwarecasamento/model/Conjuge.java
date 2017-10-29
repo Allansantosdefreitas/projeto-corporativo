@@ -14,7 +14,6 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name = "idUsuarioProfissional", referencedColumnName = "idUsuario")
 @NamedQuery(name="Conjuge.findAll", query="SELECT c FROM Conjuge c")
 public class Conjuge extends Usuario implements Serializable {
-	private static final long serialVersionUID = 1L;
 
 	//bi-directional many-to-one association to Casamento
 	@ManyToOne(fetch=FetchType.LAZY, optional = false)

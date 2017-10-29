@@ -11,8 +11,7 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Convite.findAll", query="SELECT c FROM Convite c")
 public class Convite implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idConvite;

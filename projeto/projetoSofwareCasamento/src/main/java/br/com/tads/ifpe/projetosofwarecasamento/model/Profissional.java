@@ -43,14 +43,14 @@ public class Profissional extends Usuario implements Serializable {
 	}
 
 	public Servico addServico(Servico servico) {
-		getServicos().add(servico);
+		this.getServicos().add(servico);
 		servico.setProfissional(this);
 
 		return servico;
 	}
 
 	public Servico removeServico(Servico servico) {
-		getServicos().remove(servico);
+		this.getServicos().remove(servico);
 		servico.setProfissional(null);
 
 		return servico;

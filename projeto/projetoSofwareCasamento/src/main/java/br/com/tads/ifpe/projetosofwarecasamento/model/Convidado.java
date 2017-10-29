@@ -10,8 +10,6 @@ import javax.persistence.*;
 @NamedQuery(name = "Convidado.findAll", query = "SELECT c FROM Convidado c")
 public class Convidado extends Usuario implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Enumerated(EnumType.STRING)
     private StatusConvidado statusConvidado;
 
@@ -28,13 +26,14 @@ public class Convidado extends Usuario implements Serializable {
     public Convidado() {
     }
 
-//	public int getIdUsuarioProfissional() {
-//		return this.idUsuarioProfissional;
-//	}
+//    public int getIdUsuarioProfissional() {
+//        return this.idUsuarioProfissional;
+//    }
 //
-//	public void setIdUsuarioProfissional(int idUsuarioProfissional) {
-//		this.idUsuarioProfissional = idUsuarioProfissional;
-//	}
+//    public void setIdUsuarioProfissional(int idUsuarioProfissional) {
+//        this.idUsuarioProfissional = idUsuarioProfissional;
+//    }
+    
     public StatusConvidado getStatusConvidado() {
         return this.statusConvidado;
     }
@@ -49,6 +48,14 @@ public class Convidado extends Usuario implements Serializable {
 
     public void setCasamento(Casamento casamento) {
         this.casamento = casamento;
+    }
+
+    public Convite getConvite() {
+        return convite;
+    }
+
+    public void setConvite(Convite convite) {
+        this.convite = convite;
     }
 
 }
