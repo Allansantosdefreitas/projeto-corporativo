@@ -67,10 +67,14 @@
                     <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.descricao}" />
 
                     <p:outputLabel value="Data" />
-                    <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.data}" />
+                    <p:inputMask mask="31/12/1999" maxlength="50" size="30" value="#{tarefaBean.tarefa.data}" />
 
                     <p:outputLabel value="Status" />
-                    <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.status}" />
+                    <p:selectOneMenu id="servico" value="#{tarefaBean.tarefa.status}">
+                        <f:selectItem itemLabel="Select One" itemValue="" />
+                        <f:selectItems value="#{ServicoManagedBean.listaServicos}" /> 
+                    </p:selectOneMenu>
+
 
                 </h:panelGrid>
 
