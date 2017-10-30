@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "grupo")
+@Table(name = "TB_grupo")
 public class Grupo implements Serializable{
 
 	public static final String CONJUGE = "conjuge";
@@ -80,7 +80,6 @@ public class Grupo implements Serializable{
 
 	@Override
 	public String toString() {
-		return "br.com.tads.ifpe.projetosoftwarecasamento.model.Grupo[ idGrupo=" + idGrupo + " ]";
+		return "br.com.sistemapetshop.model.Grupo[ idGrupo=" + idGrupo + " ]";
 	}
-        
 }

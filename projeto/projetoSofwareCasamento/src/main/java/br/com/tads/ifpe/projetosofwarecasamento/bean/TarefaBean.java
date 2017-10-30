@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 import org.omnifaces.util.Messages;
 
 /**
@@ -56,7 +57,7 @@ public class TarefaBean {
         
         try{
             
-            tarefaRepository.inserir(tarefa);
+            tarefaRepository.atualizar(tarefa);
             
             Messages.addGlobalInfo("cadastrado com sucesso!");
         }catch(Exception ex){
@@ -66,27 +67,22 @@ public class TarefaBean {
         }
     }
     
-    public void atualizar(){
+    public void atualizar(ActionEvent evento){
         
-        try{
-            
-            tarefaRepository.atualizar(tarefa);
-            
-            Messages.addGlobalInfo("atualizado com sucesso!");
-        }catch(Exception ex){
-            
-            Messages.addGlobalError("Ocorreu algum erro.");
-            ex.printStackTrace();
-        }
+        tarefa = (Tarefa) evento.getComponent().getAttributes().get("tarefaSelecionada"); // change
     }
     
-    public void deletar(){
+    public void deletar(ActionEvent evento){
+        
+        tarefa = (Tarefa) evento.getComponent().getAttributes().get("tarefaSelecionada"); // change
         
         try{
             
             tarefaRepository.deletar(tarefa);
             
             Messages.addGlobalInfo("Deletado com sucesso!");
+            
+            constroi();
         }catch(Exception ex){
             
             Messages.addGlobalError("Ocorreu algum erro.");

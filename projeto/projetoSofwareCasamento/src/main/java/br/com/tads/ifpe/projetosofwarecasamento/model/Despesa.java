@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TB_despesa")
@@ -30,9 +31,10 @@ public class Despesa implements Serializable{
     private Double despesaPrevista;
     
     @Column(name = "DBL_despesa_atual")
-    private Double despesaAtual;
+    private Double despesaAtual; 
     
     @Column(name = "DBL_valor_restante")
+   
     private Double valorRestante;
     
     @OneToOne(mappedBy = "despesa", optional = false)
