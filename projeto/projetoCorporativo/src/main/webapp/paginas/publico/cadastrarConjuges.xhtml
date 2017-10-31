@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="/layout/template.xhtml">
+            <ui:define name="title">Cadastro de Conjuges</ui:define>
+            <ui:define name="body">
+
+                <h:form id="loginForm">
+                    <p:growl id="growl" life="3500" autoUpdate="true"/>
+                    <p:panel id="panel" header="Cadastro de conjuges">
+                        <h:panelGrid columns="2" cellpadding="5" title="Noivo">
+                            <h:outputLabel value="Noivo" />
+                            <h:outputLabel value="" />
+                            
+                            <h:outputLabel for="nomeNoivo" value="Nome:" />
+                            <p:inputText id="nomeNoivo" value="#{casamentoBean.noivo.nome}" required="true" label="Login" />
+                            
+                            <h:outputLabel for="emailNoivo" value="Email:" />
+                            <p:inputText id="emailNoivo" value="#{casamentoBean.noivo.email}" required="true" label="Senha" />
+                            
+                            <h:outputLabel for="loginNoivo" value="Login:" />
+                            <p:inputText id="loginNoivo" value="#{casamentoBean.noivo.login}" required="true" label="Senha" />
+                            
+                            <h:outputLabel for="senhaNoivo" value="senha:" />
+                            <p:password id="senhaNoivo" value="#{casamentoBean.noivo.senha}" required="true" label="Senha" />
+                        
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" cellpadding="5" title="Noiva">
+                            <h:outputLabel value="Noiva" />
+                            <h:outputLabel value="" />
+                            
+                            <h:outputLabel for="nomeNoiva" value="Nome:" />
+                            <p:inputText id="nomeNoiva" value="#{casamentoBean.noiva.nome}" required="true" label="Login" />
+                            
+                            <h:outputLabel for="emailNoiva" value="Email:" />
+                            <p:inputText id="emailNoiva" value="#{casamentoBean.noiva.email}" required="true" label="Senha" />
+                            
+                            <h:outputLabel for="loginNoiva" value="Login:" />
+                            <p:inputText id="loginNoiva" value="#{casamentoBean.noiva.login}" required="true" label="Senha" />
+                            
+                            <h:outputLabel for="senhaNoiva" value="senha:" />
+                            <p:password id="senhaNoiva" value="#{casamentoBean.noiva.senha}" required="true" label="Senha" />
+                        
+                        </h:panelGrid>
+                        <p:commandButton ajax="false" action="#{casamentoBean.inserir()}" value="Enviar" update="growl, panel" title="Logar" icon="ui-icon-play" validateClient="true"/> 
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

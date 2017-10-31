@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <factory>
+        <exception-handler-factory>
+            org.primefaces.application.exceptionhandler.PrimeExceptionHandlerFactory
+        </exception-handler-factory>
+        
+        <exception-handler-factory>
+            org.omnifaces.exceptionhandler.FacesMessageExceptionHandlerFactory
+        </exception-handler-factory>
+    </factory>
+    
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>sair</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>inicio</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>entrar</from-outcome>
+            <to-view-id>/paginas/publico/login.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>cadastrar</from-outcome>
+            <to-view-id>/paginas/publico/cadastrarConjuges.xhtml</to-view-id>
+        </navigation-case>        
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/paginas/publico/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>sucesso</from-outcome>
+            <to-view-id>/paginas/noivos/casamento.xhtml</to-view-id>
+        </navigation-case>        
+        <navigation-case>
+            <from-outcome>falha</from-outcome>
+            <to-view-id>/paginas/publico/login.xhtml</to-view-id>
+        </navigation-case>       
+    </navigation-rule>
+    
+</faces-config>
