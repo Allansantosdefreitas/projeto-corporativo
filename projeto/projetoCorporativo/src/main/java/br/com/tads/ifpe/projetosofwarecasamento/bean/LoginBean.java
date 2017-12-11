@@ -5,7 +5,9 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.repository.ConjugeRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.util.Recaptcha;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,6 +24,9 @@ import org.hibernate.validator.constraints.NotBlank;
 @ManagedBean(name = "loginBean")
 @RequestScoped
 public class LoginBean {
+    
+    @EJB
+    private ConjugeRepository conjugeRepository;
 
     @NotBlank
     private String login;
@@ -42,10 +47,18 @@ public class LoginBean {
                 request.login(login, senha);
                 
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-
+                
                 session.setAttribute("loginUsuarioSessao", login);
+                
+                if(facesContext.getExternalContext().isUserInRole("conjuge")){
+                    System.out.println("Encontrou a role de conjuge.");
+                    Integer idCasamento = conjugeRepository.buscarCasamentoPorLogin(login);
+                    session.setAttribute("idCasamento", idCasamento);
+                    
+                    System.out.println("sessao casamento: " + session.getAttribute("idCasamento"));
+                }
 
-                System.out.println("sessoa usr: " + session.getAttribute("loginUsuarioSessao"));
+                System.out.println("sessao usr: " + session.getAttribute("loginUsuarioSessao"));
 
 //                EntityManager em = getEntityManager();
 //                TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorLoginSQL");

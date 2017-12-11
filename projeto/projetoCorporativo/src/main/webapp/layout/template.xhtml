@@ -41,7 +41,7 @@
                         <f:facet name="options">
                             <p:commandButton ajax="false" action="cadastrar" value="Cadastrar" icon="ui-icon-plusthick" rendered="#{empty request.remoteUser}"/>
                             <p:commandButton ajax="false" action="entrar" value="Entrar" icon="ui-icon-arrowreturnthick-1-e" rendered="#{empty request.remoteUser}"/>
-                            <p:commandButton ajax="false" action="#{managedLogoutBean.logout()}" value="Sair" icon="ui-icon-extlink" rendered="#{not empty request.remoteUser}"/>
+                            <p:commandButton ajax="false" action="#{logoutBean.logout()}" value="Sair" icon="ui-icon-extlink" rendered="#{not empty request.remoteUser}"/>
                         </f:facet>
                     </p:menubar>
                 </h:form>

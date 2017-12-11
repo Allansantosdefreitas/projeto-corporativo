@@ -5,8 +5,10 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.model.StatusTarefa;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Tarefa;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.TarefaRepository;
 import java.io.Serializable;
 import java.sql.Date;
@@ -19,7 +21,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 import org.omnifaces.util.Messages;
 
 /**
@@ -28,23 +32,31 @@ import org.omnifaces.util.Messages;
  */
 @ManagedBean(name = "tarefaBean")
 @SessionScoped
-public class TarefaBean implements Serializable{
-    
+public class TarefaBean implements Serializable {
+
     private String dataMarcada;
-    
+
     private Tarefa tarefa;
     private List<Tarefa> listaTarefa;
     private StatusTarefa statusTarefa;
-    
+    private Casamento casamento;
+
     @EJB
-    private TarefaRepository tarefaRepository; 
-    
+    private TarefaRepository tarefaRepository;
+
+    @EJB
+    private CasamentoRepository casamentoRepository;
+
     @PostConstruct
-    public void constroi(){
+    public void constroi() {
         tarefa = new Tarefa();
-        
+
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Integer idCasamento = (Integer) session.getAttribute("idCasamento");
+        casamento = casamentoRepository.buscar(idCasamento);
+
         dataMarcada = new String();
-        
+
         listaTarefa = new ArrayList<>();
     }
 
@@ -71,75 +83,76 @@ public class TarefaBean implements Serializable{
     public void setStatusTarefa(StatusTarefa statusTarefa) {
         this.statusTarefa = statusTarefa;
     }
-    
-    public StatusTarefa[] getStatusTarefas(){
+
+    public StatusTarefa[] getStatusTarefas() {
         return StatusTarefa.values();
     }
-    
-    public void inserir(){
-        
-        try{
-            
+
+    public void inserir() {
+
+        try {
+            tarefa.setCasamento(casamento);
+
             setDataMarcada(dataMarcada);
-            
+
             tarefaRepository.atualizar(tarefa);
-            
+
             Messages.addGlobalInfo("cadastrado com sucesso!");
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
             Messages.addGlobalError("Ocorreu algum erro.");
             ex.printStackTrace();
         }
     }
-    
-    public void atualizar(ActionEvent evento){
-        
+
+    public void atualizar(ActionEvent evento) {
+
         tarefa = (Tarefa) evento.getComponent().getAttributes().get("tarefaSelecionada"); // change
     }
-    
-    public void deletar(ActionEvent evento){
-        
+
+    public void deletar(ActionEvent evento) {
+
         tarefa = (Tarefa) evento.getComponent().getAttributes().get("tarefaSelecionada"); // change
-        
-        try{
-            
+
+        try {
+
             tarefaRepository.deletar(tarefa);
-            
+
             Messages.addGlobalInfo("Deletado com sucesso!");
-            
+
             constroi();
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
             Messages.addGlobalError("Ocorreu algum erro.");
             ex.printStackTrace();
         }
     }
-    
-    public void buscar(){
-        
-        try{
-            
+
+    public void buscar() {
+
+        try {
+
             tarefa = tarefaRepository.buscar(Integer.MIN_VALUE);
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
             Messages.addGlobalError("Ocorreu algum erro.");
             ex.printStackTrace();
         }
     }
-    
-    public void listar(){
-        
-        try{
-            
-            listaTarefa = tarefaRepository.listar();
-        }catch(Exception ex){
+
+    public void listar() {
+
+        try {
+
+            listaTarefa = tarefaRepository.listarTarefaPorId(casamento.getIdCasamento());
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    public void setDataMarcada(String dataMarcada) throws ParseException{
+
+    public void setDataMarcada(String dataMarcada) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        Date date = (Date)formatter.parse(dataMarcada);
+        Date date = (Date) formatter.parse(dataMarcada);
         tarefa.setData(date);
     }
 }

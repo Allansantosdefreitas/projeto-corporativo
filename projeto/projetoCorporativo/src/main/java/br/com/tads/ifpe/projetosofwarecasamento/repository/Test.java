@@ -21,7 +21,7 @@ public class Test {
     
     public static void main(String[] args) {
 
-    Long idCasamento;
+    Integer idCasamento;
     
         try {
             
@@ -33,7 +33,7 @@ public class Test {
 
     }
 
-    public static Long inserirCasamento() {
+    public static Integer inserirCasamento() {
         EntityManager em = null;
         EntityTransaction et = null;
         

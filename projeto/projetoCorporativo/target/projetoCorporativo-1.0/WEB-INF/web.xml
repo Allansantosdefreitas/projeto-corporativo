@@ -3,7 +3,7 @@
   
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>saltRealmCasamento</realm-name>
+        <realm-name>saltRealm</realm-name>
         <form-login-config>
             <form-login-page>/faces/paginas/publico/login.xhtml</form-login-page>
             <form-error-page>/faces/paginas/publico/nao_autorizado.xhtml</form-error-page>

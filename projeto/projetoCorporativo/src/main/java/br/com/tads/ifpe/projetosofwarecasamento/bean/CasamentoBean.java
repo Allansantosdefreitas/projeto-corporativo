@@ -99,6 +99,10 @@ public class CasamentoBean implements Serializable{
             noivo.setGrupo(grupoRepository.getGrupo(new String[]{Papel.CONJUGE}));
             noiva.setGrupo(grupoRepository.getGrupo(new String[]{Papel.CONJUGE}));
             
+            //Salva o casamento nos conjuges
+            noivo.setCasamento(casamento);
+            noiva.setCasamento(casamento);
+            
             //Adiciona na lista
             conjuges.add(noivo);
             conjuges.add(noiva);

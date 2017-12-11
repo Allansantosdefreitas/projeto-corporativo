@@ -9,6 +9,7 @@ import br.com.tads.ifpe.projetosofwarecasamento.Papel;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ConjugeRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Conjuge;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class ConjugeBean implements Serializable{
     
     @EJB
     private GrupoRepository grupoRepository;
+    
+    @EJB
+    private CasamentoRepository casamentoRepository;
     
     @PostConstruct
     public void constroi(){
