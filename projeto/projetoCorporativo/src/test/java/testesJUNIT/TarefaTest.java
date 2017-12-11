@@ -86,71 +86,71 @@ public class TarefaTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void a_inserirTarefaValidoEM() {
-
-        tarefa = preencherTarefa();
-        em.persist(tarefa);
-
-        assertNotNull(tarefa);
-    }
+//    @Test
+//    public void a_inserirTarefaValidoEM() {
+//
+//        tarefa = preencherTarefa();
+//        em.persist(tarefa);
+//
+//        assertNotNull(tarefa);
+//    }
 
     /* Tem que ajeitar aqui..falta pegar o id da última entidade inserida para
         atualizar e não criar uma nova entidade */
-    @Test
-    public void b_atualizarTarefaValidoEM() {
+//    @Test
+//    public void b_atualizarTarefaValidoEM() {
+//
+//        //em.flush();
+//        //tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
+//        tarefa.setTitulo("NEW_Contratar Buffet");
+//        em.merge(tarefa);
+//
+//        assertNotNull(tarefa);
+//    }
 
-        //em.flush();
-        //tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
-        tarefa.setTitulo("NEW_Contratar Buffet");
-        em.merge(tarefa);
-
-        assertNotNull(tarefa);
-    }
-
-    @Ignore
-    @Test
-    public void c_consultarTarefaValidoEM() {
-        
-        tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
-        assertNotNull(tarefa);
-
-    }
+//    @Ignore
+//    @Test
+//    public void c_consultarTarefaValidoEM() {
+//        
+//        tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
+//        assertNotNull(tarefa);
+//
+//    }
     
-    @Ignore
-    @Test
-    public void d_deletarTarefaValidoEM() {
+//    @Ignore
+//    @Test
+//    public void d_deletarTarefaValidoEM() {
+//
+//        em.remove(tarefa);
+//
+//        tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
+//
+//        assertNull(tarefa);
+//    }
 
-        em.remove(tarefa);
-
-        tarefa = em.find(Tarefa.class, tarefa.getIdTarefa());
-
-        assertNull(tarefa);
-    }
-
-    private static Tarefa preencherTarefa() {
-
-        // Preenchendo attrs
-        Tarefa tarefa = new Tarefa();
-        
-          // casamento
-        Casamento casamento = new Casamento();
-        casamento.setNome("Tarefa_Marriage of Dreams!");
-        
-        // Tarefa
-        tarefa.setCasamento(casamento);
-        tarefa.setDescricao("Toda a parte de contratação do buffet com doces, salgados etc.");
-        
-        Calendar calendario = Calendar.getInstance();
-        calendario.set(2017, 10, 29);
-        
-        tarefa.setData(calendario.getTime());
-        tarefa.setStatus(StatusTarefa.PENDENTE);
-        
-        Servico servico = new Servico();
-        tarefa.setServico(servico);
-        
-        return tarefa;
-    }
+//    private static Tarefa preencherTarefa() {
+//
+//        // Preenchendo attrs
+//        Tarefa tarefa = new Tarefa();
+//        
+//          // casamento
+//        Casamento casamento = new Casamento();
+//        casamento.setNome("Tarefa_Marriage of Dreams!");
+//        
+//        // Tarefa
+//        tarefa.setCasamento(casamento);
+//        tarefa.setDescricao("Toda a parte de contratação do buffet com doces, salgados etc.");
+//        
+//        Calendar calendario = Calendar.getInstance();
+//        calendario.set(2017, 10, 29);
+//        
+//        tarefa.setData(calendario.getTime());
+//        tarefa.setStatus(StatusTarefa.PENDENTE);
+//        
+//        Servico servico = new Servico();
+//        tarefa.setServico(servico);
+//        
+//        return tarefa;
+//    }
 
 }

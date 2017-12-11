@@ -83,65 +83,65 @@ public class DespesaTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void a_inserirDespesaValidoEM() {
-
-        despesa = preencherDespesa();
-        em.persist(despesa);
-
-        assertNotNull(despesa);
-    }
+//    @Test
+//    public void a_inserirDespesaValidoEM() {
+//
+//        despesa = preencherDespesa();
+//        em.persist(despesa);
+//
+//        assertNotNull(despesa);
+//    }
 
     /* Tem que ajeitar aqui..falta pegar o id da última entidade inserida para
         atualizar e não criar uma nova entidade */
-    @Test
-    public void b_atualizarDespesaValidoEM() {
+//    @Test
+//    public void b_atualizarDespesaValidoEM() {
+//
+//        //em.flush();
+//        //despesa = em.find(Despesa.class, despesa.getIdDespesa());
+//        despesa.setDespesaAtual(0.0000);
+//        em.merge(despesa);
+//
+//        assertNotNull(despesa);
+//    }
 
-        //em.flush();
-        //despesa = em.find(Despesa.class, despesa.getIdDespesa());
-        despesa.setDespesaAtual(0.0000);
-        em.merge(despesa);
-
-        assertNotNull(despesa);
-    }
-
-    @Ignore
-    @Test
-    public void c_consultarDespesaValidoEM() {
-        
-        despesa = em.find(Despesa.class, despesa.getIdDespesa());
-        assertNotNull(despesa);
-
-    }
-    
-    @Ignore
-    @Test
-    public void d_deletarDespesaValidoEM() {
-
-        em.remove(despesa);
-
-        despesa = em.find(Despesa.class, despesa.getIdDespesa());
-
-        assertNull(despesa);
-    }
-
-    private static Despesa preencherDespesa() {
-
-        // Preenchendo attrs
-        Despesa despesa = new Despesa();
-        
-          // casamento
-        Casamento casamento = new Casamento();
-        casamento.setNome("Marriage of Dreams!");
-        
-        
-        // Despesa
-        despesa.setCasamento(casamento);
-        despesa.setDespesaPrevista(20.000);
-        despesa.setDespesaAtual(10.000);
-        despesa.setValorRestante(10.000);
-        
-        return despesa;
-    }
+//    @Ignore
+//    @Test
+//    public void c_consultarDespesaValidoEM() {
+//        
+//        despesa = em.find(Despesa.class, despesa.getIdDespesa());
+//        assertNotNull(despesa);
+//
+//    }
+//    
+//    @Ignore
+//    @Test
+//    public void d_deletarDespesaValidoEM() {
+//
+//        em.remove(despesa);
+//
+//        despesa = em.find(Despesa.class, despesa.getIdDespesa());
+//
+//        assertNull(despesa);
+//    }
+//
+//    private static Despesa preencherDespesa() {
+//
+//        // Preenchendo attrs
+//        Despesa despesa = new Despesa();
+//        
+//          // casamento
+//        Casamento casamento = new Casamento();
+//        casamento.setNome("Marriage of Dreams!");
+//        
+//        
+//        // Despesa
+//        despesa.setCasamento(casamento);
+//        despesa.setDespesaPrevista(20.000);
+//        despesa.setDespesaAtual(10.000);
+//        despesa.setValorRestante(10.000);
+//        
+//        return despesa;
+//    }
 
 }

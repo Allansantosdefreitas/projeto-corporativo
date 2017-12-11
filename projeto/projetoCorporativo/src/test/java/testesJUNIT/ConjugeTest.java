@@ -83,65 +83,65 @@ public class ConjugeTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void a_inserirConjugeValidoEM() {
-
-        conjuge = preencherConjuge();
-        em.persist(conjuge);
-
-        assertNotNull(conjuge);
-    }
+//    @Test
+//    public void a_inserirConjugeValidoEM() {
+//
+//        conjuge = preencherConjuge();
+//        em.persist(conjuge);
+//
+//        assertNotNull(conjuge);
+//    }
 
     /* Tem que ajeitar aqui..falta pegar o id da última entidade inserida para
         atualizar e não criar uma nova entidade */
-    @Test
-    public void b_atualizarConjugeValidoEM() {
+//    @Test
+//    public void b_atualizarConjugeValidoEM() {
+//
+//        //em.flush();
+//        //conjuge = em.find(Conjuge.class, conjuge.getIdConjuge());
+//        conjuge.setNome("NEW_Fulaninho");
+//        em.merge(conjuge);
+//
+//        assertNotNull(conjuge);
+//    }
 
-        //em.flush();
-        //conjuge = em.find(Conjuge.class, conjuge.getIdConjuge());
-        conjuge.setNome("NEW_Fulaninho");
-        em.merge(conjuge);
-
-        assertNotNull(conjuge);
-    }
-
-    @Ignore
-    @Test
-    public void c_consultarConjugeValidoEM() {
-        
-        conjuge = em.find(Conjuge.class, conjuge.getIdUsuario());
-        assertNotNull(conjuge);
-
-    }
-    
-    @Ignore
-    @Test
-    public void d_deletarConjugeValidoEM() {
-
-        em.remove(conjuge);
-
-        conjuge = em.find(Conjuge.class, conjuge.getIdUsuario());
-
-        assertNull(conjuge);
-    }
-
-    private static Conjuge preencherConjuge() {
-
-        // Preenchendo attrs
-        Conjuge conjuge = new Conjuge();
-        
-          // casamento
-        Casamento casamento = new Casamento();
-        casamento.setNome("Marriage of Dreams!");
-        
-        // Conjuge
-        conjuge.setCasamento(casamento);
-        conjuge.setNome("Fulaninho");
-        conjuge.setEmail("fulaninho@gmail.com");
-        conjuge.setLogin("fulaninhoLogin");
-        conjuge.setSenha("12345Fulaninho");
-        
-        return conjuge;
-    }
+//    @Ignore
+//    @Test
+//    public void c_consultarConjugeValidoEM() {
+//        
+//        conjuge = em.find(Conjuge.class, conjuge.getIdUsuario());
+//        assertNotNull(conjuge);
+//
+//    }
+//    
+//    @Ignore
+//    @Test
+//    public void d_deletarConjugeValidoEM() {
+//
+//        em.remove(conjuge);
+//
+//        conjuge = em.find(Conjuge.class, conjuge.getIdUsuario());
+//
+//        assertNull(conjuge);
+//    }
+//
+//    private static Conjuge preencherConjuge() {
+//
+//        // Preenchendo attrs
+//        Conjuge conjuge = new Conjuge();
+//        
+//          // casamento
+//        Casamento casamento = new Casamento();
+//        casamento.setNome("Marriage of Dreams!");
+//        
+//        // Conjuge
+//        conjuge.setCasamento(casamento);
+//        conjuge.setNome("Fulaninho");
+//        conjuge.setEmail("fulaninho@gmail.com");
+//        conjuge.setLogin("fulaninhoLogin");
+//        conjuge.setSenha("12345Fulaninho");
+//        
+//        return conjuge;
+//    }
 
 }

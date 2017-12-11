@@ -81,27 +81,27 @@ public class CasamentoTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void a_inserirCasamentoValidoEM() {
-
-        casamento = preencherCasamento();
-        em.persist(casamento);
-
-        assertNotNull(casamento);
-    }
+//    @Test
+//    public void a_inserirCasamentoValidoEM() {
+//
+//        casamento = preencherCasamento();
+//        em.persist(casamento);
+//
+//        assertNotNull(casamento);
+//    }
 
     /* Tem que ajeitar aqui..falta pegar o id da última entidade inserida para
         atualizar e não criar uma nova entidade */
-    @Test
-    public void b_atualizarCasamentoValidoEM() {
-
-        //em.flush();
-        //casamento = em.find(Casamento.class, casamento.getIdCasamento());
-        casamento.setNome("Marriage of OUR EXPECTED Dreams!!!!");
-        em.merge(casamento);
-
-        assertNotNull(casamento);
-    }
+//    @Test
+//    public void b_atualizarCasamentoValidoEM() {
+//
+//        //em.flush();
+//        //casamento = em.find(Casamento.class, casamento.getIdCasamento());
+//        casamento.setNome("Marriage of OUR EXPECTED Dreams!!!!");
+//        em.merge(casamento);
+//
+//        assertNotNull(casamento);
+//    }
 
 //
 //    @Test
@@ -122,13 +122,13 @@ public class CasamentoTest {
 //        assertNull(casamento);
 //    }
 
-    private static Casamento preencherCasamento() {
-
-        // Preenchendo attrs
-        Casamento casamento = new Casamento();
-        casamento.setNome("Marriage of OUR Dreams");
-
-        return casamento;
-    }
+//    private static Casamento preencherCasamento() {
+//
+//        // Preenchendo attrs
+//        Casamento casamento = new Casamento();
+//        casamento.setNome("Marriage of OUR Dreams");
+//
+//        return casamento;
+//    }
 
 }

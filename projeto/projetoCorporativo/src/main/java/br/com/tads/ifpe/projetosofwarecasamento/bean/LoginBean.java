@@ -5,6 +5,7 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.util.Recaptcha;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -21,7 +22,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @ManagedBean(name = "loginBean")
 @RequestScoped
 public class LoginBean {
-    
+
     @NotBlank
     private String login;
 
@@ -34,22 +35,29 @@ public class LoginBean {
         try {
 
             facesContext = FacesContext.getCurrentInstance();
+            Recaptcha recaptcha = new Recaptcha(facesContext);
 
-            HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-            request.login(login, senha);
+            if (recaptcha.validar()) {
+                HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+                request.login(login, senha);
+                
+                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
-            HttpSession session = (HttpSession)facesContext.getExternalContext().getSession(true);
+                session.setAttribute("loginUsuarioSessao", login);
 
-            session.setAttribute("loginUsuarioSessao", login);
-
-            System.out.println("sessoa usr: " + session.getAttribute("loginUsuarioSessao") );
+                System.out.println("sessoa usr: " + session.getAttribute("loginUsuarioSessao"));
 
 //                EntityManager em = getEntityManager();
 //                TypedQuery<Cliente> query = em.createNamedQuery("Cliente.PorLoginSQL");
-            //query.setParameter(1, login);
+                //query.setParameter(1, login);
+                //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("LoginUsuarioSessao", login);
+            } else {
 
-            //FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("LoginUsuarioSessao", login);
-                
+                setLogin(null);
+                adicionarMensagem("Captcha inválido!");
+
+                return "falha";
+            }
 
         } catch (ServletException ex) {
 

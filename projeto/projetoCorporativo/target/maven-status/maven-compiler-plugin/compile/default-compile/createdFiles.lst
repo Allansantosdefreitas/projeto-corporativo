@@ -18,6 +18,7 @@ br\com\tads\ifpe\projetosofwarecasamento\repository\UsuarioRepository.class
 br\com\tads\ifpe\projetosofwarecasamento\util\DbUnitUtil.class
 br\com\tads\ifpe\projetosofwarecasamento\MainClass.class
 br\com\tads\ifpe\projetosofwarecasamento\model\Profissional.class
+br\com\tads\ifpe\projetosofwarecasamento\util\Recaptcha.class
 br\com\tads\ifpe\projetosofwarecasamento\bean\ServicoBean.class
 br\com\tads\ifpe\projetosofwarecasamento\repository\Repository.class
 br\com\tads\ifpe\projetosofwarecasamento\bean\ProfissionalBean.class
