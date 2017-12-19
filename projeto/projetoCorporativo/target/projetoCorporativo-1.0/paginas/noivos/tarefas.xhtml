@@ -28,11 +28,12 @@
 
                             <p:column headerText="Descricao" sortBy="#{tarefa.descricao}">
                                 <h:outputText value="#{tarefa.descricao}"/>
-
                             </p:column>
 
                             <p:column headerText="Data" sortBy="#{tarefa.data}">
-                                <h:outputText value="#{tarefa.data}"/>
+                                <h:outputText value="#{tarefa.data}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
                             </p:column>
 
                             <p:column headerText="Status" sortBy="#{tarefa.status}" >
@@ -59,7 +60,7 @@
                     </p:panel>
                 </h:form>
 
-                <p:dialog header="Pet - Cadastro" widgetVar="dialogo" draggable="false" resizable="false" modal="false" closable="false">
+                <p:dialog header="Tarefas - Cadastro" widgetVar="dialogo" draggable="false" resizable="false" modal="false" closable="false">
                     <h:form id="formServicos">
 
                         <h:panelGrid id="painelServico" columns="2">
@@ -70,14 +71,13 @@
                             <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.descricao}" />
 
                             <p:outputLabel value="Data" />
-                            <p:inputMask mask="99/99/9999" maxlength="50" size="30" value="#{tarefaBean.tarefa.data}" />
-
+                            <p:calendar mask="99/99/9999" maxlength="50" size="30" value="#{tarefaBean.data}" />
+                            
                             <p:outputLabel value="Status" />
                             <p:selectOneMenu id="servico" value="#{tarefaBean.tarefa.status}">
                                 <f:selectItem itemLabel="Select One" itemValue="" />
                                 <f:selectItems value="#{tarefaBean.statusTarefas}" /> 
                             </p:selectOneMenu>
-
 
                         </h:panelGrid>
 

@@ -26,6 +26,12 @@ public class ConjugeRepository extends Repository<Conjuge> {
         Conjuge conjuge = (Conjuge) query.getSingleResult();
         System.out.println("-------------------------------------------------------------------------------");
         System.out.println("Nome: " + conjuge.getNome());
+        System.out.println("Nome: " + conjuge.getDiscUsuario());
+        System.out.println("Nome: " + conjuge.getEmail());
+        System.out.println("Nome: " + conjuge.getLogin());
+        System.out.println("Nome: " + conjuge.getSal());
+        System.out.println("Nome: " + conjuge.getSenha());
+        System.out.println("Nome: " + conjuge.getCasamento());
         System.out.println("-------------------------------------------------------------------------------");
         return conjuge.getCasamento().getIdCasamento();
     }

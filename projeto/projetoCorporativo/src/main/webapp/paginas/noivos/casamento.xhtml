@@ -6,89 +6,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Gerenciar casamento</title>
     </h:head>
     <h:body>
 
         <ui:composition template="/layout/template.xhtml">
-            <ui:define name="title">Não autorizado</ui:define>
+            <ui:define name="title">Casamento</ui:define>
             <ui:define name="body">
 
                 <p:growl id="mensagem"/>
 
-                <h:form  id="formListagemServicos">
-                    <p:panel header="Tarefas - Listadas">
-                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{tarefaBean.listaTarefa}" var="tarefa" rows="10">
-
-                            <f:facet name="footer">
-                                <p:commandButton value="Novo" oncomplete="PF('dialogo').show();" actionListener="#{tarefaBean.constroi()}" update=":formServicos:painelServico"/>
-                            </f:facet>
-
-                            <p:column headerText="Título" sortBy="#{tarefa.titulo}" filterBy="#{tarefa.titulo}">
-                                <h:outputText value="#{tarefa.titulo}"/>
-                            </p:column>
-
-                            <p:column headerText="Descricao" sortBy="#{tarefa.descricao}">
-                                <h:outputText value="#{tarefa.descricao}"/>
-
-                            </p:column>
-
-                            <p:column headerText="Data" sortBy="#{tarefa.data}">
-                                <h:outputText value="#{tarefa.data}"/>
-                            </p:column>
-
-                            <p:column headerText="Status" sortBy="#{tarefa.status}" >
-                                <h:outputText value="#{tarefa.status}"/>
-                            </p:column>
-
-                            <p:column headerText="Opções">
-                                <p:commandButton value="Excluir" icon="ui-icon-trash" actionListener="#{tarefaBean.deletar}" update=":mensagem :formListagemServicos:tabelaListagemServicos">
-                                    <p:confirm header="Confirmação" message="Tem certeza que deseja excluir este serviço?" icon="ui-icon-alert"/>
-                                    <f:attribute name="servicoSelecionado" value="#{tarefa}"/>
-                                </p:commandButton>
-
-                                <p:commandButton value="Editar" icon="ui-icon-pencil" actionListener="#{tarefaBean.atualizar}" update=":formServicos:painelServico" oncomplete="PF('dialogo').show();">
-                                    <f:attribute name="servicoSelecionado" value="#{tarefa}"/>
-                                </p:commandButton>
-                            </p:column>
-                        </p:dataTable>
-
-                        <p:confirmDialog global="true">
-                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="iu-icon-close"/>
-                        </p:confirmDialog>
-
-                    </p:panel>
-                </h:form>
-
-                <p:dialog header="Pet - Cadastro" widgetVar="dialogo" draggable="false" resizable="false" modal="false" closable="false">
-                    <h:form id="formServicos">
-
-                        <h:panelGrid id="painelServico" columns="2">
-                            <p:outputLabel value="Título" />
-                            <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.titulo}" />
-
-                            <p:outputLabel value="Descrição" />
-                            <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.descricao}" />
-
-                            <p:outputLabel value="Data" />
-                            <p:inputMask mask="31/12/1999" maxlength="50" size="30" value="#{tarefaBean.tarefa.data}" />
-
-                            <p:outputLabel value="Status" />
-                            <p:selectOneMenu id="servico" value="#{tarefaBean.tarefa.status}">
-                                <f:selectItem itemLabel="Select One" itemValue="" />
-                                <f:selectItems value="#{ServicoManagedBean.listaServicos}" /> 
-                            </p:selectOneMenu>
-
-
-                        </h:panelGrid>
-
-                        <h:panelGrid columns="2">
-                            <p:commandButton value="Salvar" actionListener="#{tarefaBean.inserir()}" update=":mensagem :formServicos:painelServico :formListagemServicos:tabelaListagemServicos" />
-                            <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
-                        </h:panelGrid>
-                    </h:form>
-                </p:dialog>
+               
             </ui:define>
         </ui:composition>
     </h:body>

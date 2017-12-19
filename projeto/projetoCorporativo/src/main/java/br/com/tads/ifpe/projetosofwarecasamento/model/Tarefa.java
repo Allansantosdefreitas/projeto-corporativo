@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import javax.validation.constraints.Future;
 
 /**
  * The persistent class for the tarefa database table.
@@ -27,6 +28,7 @@ public class Tarefa implements Serializable {
 
     @Column(name = "DTE_data")
     @Temporal(TemporalType.DATE)
+    @Future
     private Date data;
 
     @Enumerated(EnumType.STRING)

@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import org.omnifaces.util.Messages;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -40,6 +41,7 @@ public class TarefaBean implements Serializable {
     private List<Tarefa> listaTarefa;
     private StatusTarefa statusTarefa;
     private Casamento casamento;
+    private Date data;
 
     @EJB
     private TarefaRepository tarefaRepository;
@@ -53,11 +55,14 @@ public class TarefaBean implements Serializable {
 
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Integer idCasamento = (Integer) session.getAttribute("idCasamento");
+        System.out.println("IDCASAMENTO na tarefa: " + idCasamento);
         casamento = casamentoRepository.buscar(idCasamento);
 
         dataMarcada = new String();
 
         listaTarefa = new ArrayList<>();
+        
+        listar();
     }
 
     public Tarefa getTarefa() {
@@ -87,13 +92,22 @@ public class TarefaBean implements Serializable {
     public StatusTarefa[] getStatusTarefas() {
         return StatusTarefa.values();
     }
+    
+    public Date getData() {
+        return data;
+    }
+ 
+    public void setData(Date data) {
+        this.data = data;
+    }
 
     public void inserir() {
 
         try {
             tarefa.setCasamento(casamento);
 
-            setDataMarcada(dataMarcada);
+//            setDataMarcada(dataMarcada);
+            tarefa.setData(data);
 
             tarefaRepository.atualizar(tarefa);
 
@@ -143,16 +157,28 @@ public class TarefaBean implements Serializable {
     public void listar() {
 
         try {
-
-            listaTarefa = tarefaRepository.listarTarefaPorId(casamento.getIdCasamento());
+            
+            
+            System.out.println("id do casamento no listar: " + casamento.getIdCasamento());
+            listaTarefa = tarefaRepository.listarTarefaPorId(casamento);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     public void setDataMarcada(String dataMarcada) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = (Date) formatter.parse(dataMarcada);
         tarefa.setData(date);
+    }
+    
+    public String getDataMarcada(){
+        return this.dataMarcada;
+    }
+    
+    public void onDateSelect(SelectEvent event) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Messages.addGlobalInfo("Data selecionada:", format.format(event.getObject()));
     }
 }

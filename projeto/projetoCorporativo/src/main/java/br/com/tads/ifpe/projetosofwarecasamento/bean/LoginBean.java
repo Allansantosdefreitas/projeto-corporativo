@@ -54,7 +54,7 @@ public class LoginBean {
                     System.out.println("Encontrou a role de conjuge.");
                     Integer idCasamento = conjugeRepository.buscarCasamentoPorLogin(login);
                     session.setAttribute("idCasamento", idCasamento);
-                    
+
                     System.out.println("sessao casamento: " + session.getAttribute("idCasamento"));
                 }
 
