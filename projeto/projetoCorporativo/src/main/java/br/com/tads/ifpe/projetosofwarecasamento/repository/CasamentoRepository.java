@@ -8,6 +8,8 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 @Stateless
 @DeclareRoles({CONJUGE, PROFISSIONAL, CONVIDADO})
@@ -23,6 +25,18 @@ public class CasamentoRepository extends Repository<Casamento> {
         EntityManager em = getEntityManager();
         
         em.persist(entidade);
+    }
+    
+    public Casamento buscarCasamentoPorCodigo(String codigo){
+        String sql = "From Casamento c WHERE c.codigo = ?1";
+        try{
+            Query query = getEntityManager().createQuery(sql);
+            query.setParameter(1, codigo);
+
+            return (Casamento) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
 }

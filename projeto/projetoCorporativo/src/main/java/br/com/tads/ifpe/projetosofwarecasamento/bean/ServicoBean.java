@@ -5,9 +5,14 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Profissional;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ServicoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Servico;
+import br.com.tads.ifpe.projetosofwarecasamento.model.StatusTarefa;
+import br.com.tads.ifpe.projetosofwarecasamento.model.Tarefa;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.TarefaRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +33,7 @@ import org.omnifaces.util.Messages;
 @SessionScoped
 public class ServicoBean implements Serializable{
     
+    private Casamento casamento;
     private Servico servico;
     private List<Servico> listaServico;
     
@@ -36,10 +42,21 @@ public class ServicoBean implements Serializable{
     @EJB
     private ServicoRepository servicoRepository;
     
+    @EJB
+    private CasamentoRepository casamentoRepository;
+    
+    @EJB
+    private TarefaRepository tarefaRepository;
+    
     @PostConstruct
     public void constroi(){
         servico = new Servico();
-        inicializaProfissional();
+        
+        if(FacesContext.getCurrentInstance().getExternalContext().isUserInRole("profissional")){
+            inicializaProfissional();
+        } else{
+            inicializaCasamento();
+        }
         
         listaServico = new ArrayList<>();
         
@@ -51,6 +68,13 @@ public class ServicoBean implements Serializable{
             HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             profissional = (Profissional) session.getAttribute("profissional");
         }
+    }
+    
+    private void inicializaCasamento(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Integer idCasamento = (Integer) session.getAttribute("idCasamento");
+        
+        casamento = casamentoRepository.buscar(idCasamento);
     }
 
     public Servico getServico() {
@@ -141,6 +165,20 @@ public class ServicoBean implements Serializable{
     public void contratar(ActionEvent evento){
         servico = (Servico) evento.getComponent().getAttributes().get("servicoSelecionado");
         
-        Messages.addGlobalInfo("O serviço foi selecionado.");
+        Tarefa novaTarefa = new Tarefa();
+        
+        novaTarefa.setTitulo(servico.getTitulo());
+        novaTarefa.setDescricao(servico.getDescricao());
+        novaTarefa.setStatus(StatusTarefa.PENDENTE);
+        novaTarefa.setCasamento(casamento);
+        novaTarefa.setServico(servico);
+        
+        try{
+            tarefaRepository.inserir(novaTarefa);
+            
+            Messages.addGlobalInfo("O serviço foi contratado com sucesso.");
+        } catch(Exception ex){
+            Messages.addGlobalError("Ocorreu um erro inesperado.");
+        }
     }
 }

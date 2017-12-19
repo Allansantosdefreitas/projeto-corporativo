@@ -9,8 +9,10 @@ import br.com.tads.ifpe.projetosofwarecasamento.Papel;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Conjuge;
+import br.com.tads.ifpe.projetosofwarecasamento.model.Convidado;
 import br.com.tads.ifpe.projetosofwarecasamento.model.StatusTarefa;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Tarefa;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.ConvidadoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class CasamentoBean implements Serializable{
     private Casamento casamento;
     private List<Casamento> listaCasamento;
     private List<Conjuge> conjuges;
+    private List<Convidado> convidados;
     
     private int tarefasPendentes;
  
@@ -44,6 +47,9 @@ public class CasamentoBean implements Serializable{
     
     @EJB
     private GrupoRepository grupoRepository;
+    
+    @EJB
+    private ConvidadoRepository convidadoRepository;
     
     @PostConstruct
     public void constroi(){
@@ -55,11 +61,14 @@ public class CasamentoBean implements Serializable{
         conjuges = new ArrayList<>();
         listaCasamento = new ArrayList<>();
         
-        carregaCasamento();
-        calculaOrcamento();
+        if(FacesContext.getCurrentInstance().getExternalContext().isUserInRole("conjuge")){
+            carregaCasamento();
+            calculaTarefasPendentes();
+            listarConvidados();
+        }
     }
 
-    private void calculaOrcamento(){
+    private void calculaTarefasPendentes(){
        
         List<Tarefa> listaTarefas = casamento.getTarefas();
         
@@ -124,6 +133,14 @@ public class CasamentoBean implements Serializable{
 
     public void setTarefasPendentes(int tarefasPendentes) {
         this.tarefasPendentes = tarefasPendentes;
+    }
+
+    public List<Convidado> getConvidados() {
+        return convidados;
+    }
+
+    public void setConvidados(List<Convidado> convidados) {
+        this.convidados = convidados;
     }
 
     public void inserir(){
@@ -200,6 +217,16 @@ public class CasamentoBean implements Serializable{
             
             listaCasamento = casamentoRepository.listar();
         }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    
+    public void listarConvidados(){
+        
+        try{
+            convidados = convidadoRepository.listarConvidadoPorCasamento(casamento);
+        } catch(Exception ex){
+            Messages.addGlobalError("Ocorreu algum erro ao tentar carregar os convidados.");
             ex.printStackTrace();
         }
     }

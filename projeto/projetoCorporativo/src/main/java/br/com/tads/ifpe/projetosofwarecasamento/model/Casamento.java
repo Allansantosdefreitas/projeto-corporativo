@@ -1,6 +1,9 @@
 package br.com.tads.ifpe.projetosofwarecasamento.model;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
 import javax.persistence.*;
 import java.util.List;
 
@@ -39,8 +42,18 @@ public class Casamento implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "ID_convite", referencedColumnName = "idConvite")
     private Convite convite;
+    
+    private String codigo;
 
     public Casamento() {
+    }
+    
+    @PrePersist
+    private void gerarCodigo() throws NoSuchAlgorithmException {
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+        byte[] randomBytes = new byte[32];
+        secureRandom.nextBytes(randomBytes);
+        setCodigo(Base64.getEncoder().encodeToString(randomBytes));
     }
 
     public String getNome() {
@@ -139,6 +152,14 @@ public class Casamento implements Serializable {
 
     public void setConvite(Convite convite) {
         this.convite = convite;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
 }

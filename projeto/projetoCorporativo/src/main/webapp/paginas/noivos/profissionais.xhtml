@@ -18,7 +18,7 @@
                     <p:panel header="Profissionais - Listados">
                         <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{profissionalBean.listaProfissional}" var="profissional" rows="10">
 
-                            <p:column headerText="Nome" sortBy="#{profissional.titulo}" filterBy="#{profissional.nome}">
+                            <p:column headerText="Nome" sortBy="#{profissional.nome}" filterBy="#{profissional.nome}">
                                 <h:outputText value="#{profissional.nome}"/>
                             </p:column>
 

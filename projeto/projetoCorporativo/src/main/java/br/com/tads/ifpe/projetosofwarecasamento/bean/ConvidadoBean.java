@@ -9,6 +9,8 @@ import br.com.tads.ifpe.projetosofwarecasamento.Papel;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ConvidadoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Convidado;
+import br.com.tads.ifpe.projetosofwarecasamento.model.StatusConvidado;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class ConvidadoBean implements Serializable{
     @EJB
     private GrupoRepository grupoRepository;
     
+    @EJB
+    private CasamentoRepository casamentoRepository;
+    
     @PostConstruct
     public void constroi(){
         convidado = new Convidado();
@@ -53,6 +58,14 @@ public class ConvidadoBean implements Serializable{
         this.convidado = convidado;
     }
 
+    public Casamento getCasamento() {
+        return casamento;
+    }
+
+    public void setCasamento(Casamento casamento) {
+        this.casamento = casamento;
+    }
+
     public List<Convidado> getListaConvidado() {
         return listaConvidado;
     }
@@ -64,16 +77,21 @@ public class ConvidadoBean implements Serializable{
     public void inserir(){
         
         try{
-            
-            //Salva o casamento nos conjuges
-            convidado.setCasamento(casamento);
-            
-            //Atribui os papéis
-            convidado.setGrupo(grupoRepository.getGrupo(new String[]{Papel.CONVIDADO}));
 
-            convidadoRepository.inserir(convidado);
+            casamento = casamentoRepository.buscarCasamentoPorCodigo(casamento.getCodigo());
             
-            Messages.addGlobalInfo("cadastrado com sucesso!");
+            if(casamento == null){
+                Messages.addGlobalError("O casamento com este código não existe.");
+            }else{
+            
+                convidado.setCasamento(casamento);
+                convidado.setGrupo(grupoRepository.getGrupo(new String[]{Papel.CONVIDADO}));
+                convidado.setStatusConvidado(StatusConvidado.PENDENTE);
+
+                convidadoRepository.inserir(convidado);
+
+                Messages.addGlobalInfo("cadastrado com sucesso!");
+            }
         }catch(Exception ex){
             
             Messages.addGlobalError("Ocorreu algum erro.");

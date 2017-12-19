@@ -16,34 +16,18 @@
 
                 <h:form  id="formListagemServicos">
                     <p:panel header="Tarefas - Listadas">
-                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{tarefaBean.listaTarefa}" var="convidado" rows="10">
+                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{casamentoBean.convidados}" var="convidado" rows="10">
 
-                            <p:column headerText="Título" sortBy="#{convidado.titulo}" filterBy="#{convidado.titulo}">
-                                <h:outputText value="#{convidado.titulo}"/>
+                            <p:column headerText="Título" sortBy="#{convidado.nome}" filterBy="#{convidado.nome}">
+                                <h:outputText value="#{convidado.nome}"/>
                             </p:column>
 
-                            <p:column headerText="Descricao" sortBy="#{convidado.descricao}">
-                                <h:outputText value="#{convidado.descricao}"/>
-
+                            <p:column headerText="Descricao" sortBy="#{convidado.email}">
+                                <h:outputText value="#{convidado.email}"/>
                             </p:column>
 
-                            <p:column headerText="Data" sortBy="#{convidado.data}">
-                                <h:outputText value="#{convidado.data}"/>
-                            </p:column>
-
-                            <p:column headerText="Status" sortBy="#{convidado.status}" >
-                                <h:outputText value="#{convidado.status}"/>
-                            </p:column>
-
-                            <p:column headerText="Opções">
-                                <p:commandButton value="Excluir" icon="ui-icon-trash" actionListener="#{tarefaBean.deletar}" update=":mensagem :formListagemServicos:tabelaListagemServicos">
-                                    <p:confirm header="Confirmação" message="Tem certeza que deseja excluir este serviço?" icon="ui-icon-alert"/>
-                                    <f:attribute name="servicoSelecionado" value="#{convidado}"/>
-                                </p:commandButton>
-
-                                <p:commandButton value="Editar" icon="ui-icon-pencil" actionListener="#{tarefaBean.atualizar}" update=":formServicos:painelServico" oncomplete="PF('dialogo').show();">
-                                    <f:attribute name="servicoSelecionado" value="#{convidado}"/>
-                                </p:commandButton>
+                            <p:column headerText="Status" sortBy="#{convidado.statusConvidado}" >
+                                <h:outputText value="#{convidado.statusConvidado}"/>
                             </p:column>
                         </p:dataTable>
 

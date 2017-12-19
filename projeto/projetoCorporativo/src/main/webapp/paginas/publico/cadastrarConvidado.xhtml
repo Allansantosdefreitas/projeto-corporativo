@@ -26,6 +26,9 @@
                             
                             <h:outputLabel for="senhaNoivo" value="senha:" />
                             <p:password id="senhaNoivo" value="#{convidadoBean.convidado.senha}" required="true" label="Senha" /> 
+                            
+                            <h:outputLabel for="codigo" value="codigo:" />
+                            <p:inputText id="codigo" value="#{convidadoBean.casamento.codigo}" required="true" label="Codigo" /> 
                         </h:panelGrid>
                         
                         <p:commandButton ajax="false" action="#{convidadoBean.inserir()}" value="Enviar" update="growl, panel" title="Logar" icon="ui-icon-play" validateClient="true"/> 
