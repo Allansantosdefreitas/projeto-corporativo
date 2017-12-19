@@ -5,8 +5,10 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.Papel;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ProfissionalRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Profissional;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,9 @@ public class ProfissionalBean implements Serializable{
     
     @EJB
     private ProfissionalRepository profissionalRepository;
+    
+    @EJB
+    private GrupoRepository grupoRepository;
     
     @PostConstruct
     public void constroi(){
@@ -57,6 +62,9 @@ public class ProfissionalBean implements Serializable{
     public void inserir(){
         
         try{
+            
+            //Atribui os papéis
+            profissional.setGrupo(grupoRepository.getGrupo(new String[]{Papel.PROFISSIONAL}));
             
             profissionalRepository.inserir(profissional);
             
@@ -116,5 +124,9 @@ public class ProfissionalBean implements Serializable{
         }catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    
+    public void visualizar(){
+        Messages.addGlobalInfo("Visalizado com sucesso.");
     }
 }

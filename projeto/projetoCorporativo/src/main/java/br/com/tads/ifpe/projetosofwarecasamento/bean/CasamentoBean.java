@@ -9,6 +9,8 @@ import br.com.tads.ifpe.projetosofwarecasamento.Papel;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Conjuge;
+import br.com.tads.ifpe.projetosofwarecasamento.model.StatusTarefa;
+import br.com.tads.ifpe.projetosofwarecasamento.model.Tarefa;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.omnifaces.util.Messages;
 
 /**
@@ -32,6 +36,8 @@ public class CasamentoBean implements Serializable{
     private Casamento casamento;
     private List<Casamento> listaCasamento;
     private List<Conjuge> conjuges;
+    
+    private int tarefasPendentes;
  
     @EJB
     private CasamentoRepository casamentoRepository;
@@ -48,8 +54,30 @@ public class CasamentoBean implements Serializable{
         
         conjuges = new ArrayList<>();
         listaCasamento = new ArrayList<>();
+        
+        carregaCasamento();
+        calculaOrcamento();
     }
 
+    private void calculaOrcamento(){
+       
+        List<Tarefa> listaTarefas = casamento.getTarefas();
+        
+        for(Tarefa tarefa: listaTarefas){
+            
+            if(tarefa.getStatus().equals(StatusTarefa.PENDENTE)){
+                tarefasPendentes++;
+            }
+        }   
+    }
+    
+    private void carregaCasamento(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Integer idCasamento = (Integer) session.getAttribute("idCasamento");
+        
+        this.casamento = casamentoRepository.buscar(idCasamento);
+    }
+    
     public Conjuge getNoivo() {
         return noivo;
     }
@@ -89,8 +117,15 @@ public class CasamentoBean implements Serializable{
     public void setConjuges(List<Conjuge> conjuges) {
         this.conjuges = conjuges;
     }
-    
-    
+
+    public int getTarefasPendentes() {
+        return tarefasPendentes;
+    }
+
+    public void setTarefasPendentes(int tarefasPendentes) {
+        this.tarefasPendentes = tarefasPendentes;
+    }
+
     public void inserir(){
         
         try{

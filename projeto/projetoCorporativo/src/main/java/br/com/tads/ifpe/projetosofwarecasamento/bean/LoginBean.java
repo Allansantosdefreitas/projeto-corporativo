@@ -5,7 +5,9 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.model.Profissional;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ConjugeRepository;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.ProfissionalRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.util.Recaptcha;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -27,6 +29,9 @@ public class LoginBean {
     
     @EJB
     private ConjugeRepository conjugeRepository;
+    
+    @EJB
+    private ProfissionalRepository profissionalRepository;
 
     @NotBlank
     private String login;
@@ -54,6 +59,13 @@ public class LoginBean {
                     System.out.println("Encontrou a role de conjuge.");
                     Integer idCasamento = conjugeRepository.buscarCasamentoPorLogin(login);
                     session.setAttribute("idCasamento", idCasamento);
+
+                    System.out.println("sessao casamento: " + session.getAttribute("idCasamento"));
+                } else if(facesContext.getExternalContext().isUserInRole("profissional")){
+                    
+                    System.out.println("Encontrou a role de profissional.");
+                    Profissional profissional = profissionalRepository.buscarPorLogin(login);
+                    session.setAttribute("profissional", profissional);
 
                     System.out.println("sessao casamento: " + session.getAttribute("idCasamento"));
                 }

@@ -52,17 +52,21 @@ public class TarefaBean implements Serializable {
     @PostConstruct
     public void constroi() {
         tarefa = new Tarefa();
-
-        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        Integer idCasamento = (Integer) session.getAttribute("idCasamento");
-        System.out.println("IDCASAMENTO na tarefa: " + idCasamento);
-        casamento = casamentoRepository.buscar(idCasamento);
-
+        inicializaCasamento();
         dataMarcada = new String();
 
         listaTarefa = new ArrayList<>();
         
         listar();
+    }
+    
+    private void inicializaCasamento(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        Integer idCasamento = (Integer) session.getAttribute("idCasamento");
+        
+        System.out.println("IDCASAMENTO na tarefa: " + idCasamento);
+        
+        casamento = casamentoRepository.buscar(idCasamento);
     }
 
     public Tarefa getTarefa() {
@@ -112,6 +116,8 @@ public class TarefaBean implements Serializable {
             tarefaRepository.atualizar(tarefa);
 
             Messages.addGlobalInfo("cadastrado com sucesso!");
+            
+            listar();
         } catch (Exception ex) {
 
             Messages.addGlobalError("Ocorreu algum erro.");

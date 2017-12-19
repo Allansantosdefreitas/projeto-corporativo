@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="/layout/template.xhtml">
+            <ui:define name="title">Não autorizado</ui:define>
+            <ui:define name="body">
+
+                <p:growl id="mensagem"/>
+
+                <h:form  id="formListagemServicos">
+                    <p:panel header="Serviço - Listados">
+                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{servicoBean.listaServico}" var="servico" rows="10">
+
+                            <p:column headerText="Título" sortBy="#{servico.titulo}" filterBy="#{servicoBean.titulo}">
+                                <h:outputText value="#{servico.titulo}"/>
+                            </p:column>
+
+                            <p:column headerText="Descricao" sortBy="#{servico.descricao}">
+                                <h:outputText value="#{servico.descricao}"/>
+
+                            </p:column>
+
+                            <p:column headerText="Disponibilidade" sortBy="#{servico.statusDisponibilizado}">
+                                <h:outputText value="#{servico.statusDisponibilizado}"/>
+                            </p:column>
+
+                            <p:column headerText="Preço" sortBy="#{servico.preco}" >
+                                <h:outputText value="#{servico.preco}"/>
+                            </p:column>
+                            
+                            <p:column headerText="Profissional" sortBy="#{servico.profissional.nome}" >
+                                <h:outputText value="#{servico.profissional.nome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <p:commandButton value="Contratar" icon="ui-icon-plus" actionListener="#{servicoBean.contratar}" update=":mensagem :formListagemServicos:tabelaListagemServicos">
+                                    <p:confirm header="Confirmação" message="Tem certeza que deseja contratar este serviço?" icon="ui-icon-alert"/>
+                                    <f:attribute name="servicoSelecionado" value="#{servico}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:confirmDialog global="true">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                        </p:confirmDialog>
+
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

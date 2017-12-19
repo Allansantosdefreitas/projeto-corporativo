@@ -17,38 +17,42 @@
                 <p:growl id="mensagem"/>
 
                 <h:form  id="formListagemServicos">
-                    <p:panel header="Tarefas - Listadas">
-                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{tarefaBean.listaTarefa}" var="tarefa" rows="10">
+                    <p:panel header="Serviço - Listados">
+                        <p:dataTable id="tabelaListagemServicos" emptyMessage="Nenhum registro foi encontrado." paginator="true" value="#{servicoBean.listaServico}" var="servico" rows="10">
 
                             <f:facet name="footer">
-                                <p:commandButton value="Novo" oncomplete="PF('dialogo').show();" actionListener="#{tarefaBean.constroi()}" update=":formServicos:painelServico"/>
+                                <p:commandButton value="Novo" oncomplete="PF('dialogo').show();" actionListener="#{servicoBean.constroi()}" update=":formServicos:painelServico"/>
                             </f:facet>
 
-                            <p:column headerText="Título" sortBy="#{tarefa.titulo}" filterBy="#{tarefa.titulo}">
-                                <h:outputText value="#{tarefa.titulo}"/>
+                            <p:column headerText="Título" sortBy="#{servico.titulo}" filterBy="#{servicoBean.titulo}">
+                                <h:outputText value="#{servico.titulo}"/>
                             </p:column>
 
-                            <p:column headerText="Descricao" sortBy="#{tarefa.descricao}">
-                                <h:outputText value="#{tarefa.descricao}"/>
+                            <p:column headerText="Descricao" sortBy="#{servico.descricao}">
+                                <h:outputText value="#{servico.descricao}"/>
 
                             </p:column>
 
-                            <p:column headerText="Data" sortBy="#{tarefa.data}">
-                                <h:outputText value="#{tarefa.data}"/>
+                            <p:column headerText="Disponibilidade" sortBy="#{servico.statusDisponibilizado}">
+                                <h:outputText value="#{servico.statusDisponibilizado}"/>
                             </p:column>
 
-                            <p:column headerText="Status" sortBy="#{tarefa.status}" >
-                                <h:outputText value="#{tarefa.status}"/>
+                            <p:column headerText="Preço" sortBy="#{servico.preco}" >
+                                <h:outputText value="#{servico.preco}"/>
+                            </p:column>
+                            
+                            <p:column headerText="Profissional" sortBy="#{servico.profissional.nome}" >
+                                <h:outputText value="#{servico.profissional.nome}"/>
                             </p:column>
 
                             <p:column headerText="Opções">
-                                <p:commandButton value="Excluir" icon="ui-icon-trash" actionListener="#{tarefaBean.deletar}" update=":mensagem :formListagemServicos:tabelaListagemServicos">
+                                <p:commandButton value="Excluir" icon="ui-icon-trash" actionListener="#{servicoBean.deletar}" update=":mensagem :formListagemServicos:tabelaListagemServicos">
                                     <p:confirm header="Confirmação" message="Tem certeza que deseja excluir este serviço?" icon="ui-icon-alert"/>
-                                    <f:attribute name="servicoSelecionado" value="#{tarefa}"/>
+                                    <f:attribute name="servicoSelecionado" value="#{servico}"/>
                                 </p:commandButton>
 
-                                <p:commandButton value="Editar" icon="ui-icon-pencil" actionListener="#{tarefaBean.atualizar}" update=":formServicos:painelServico" oncomplete="PF('dialogo').show();">
-                                    <f:attribute name="servicoSelecionado" value="#{tarefa}"/>
+                                <p:commandButton value="Editar" icon="ui-icon-pencil" actionListener="#{servicoBean.atualizar}" update=":formServicos:painelServico" oncomplete="PF('dialogo').show();">
+                                    <f:attribute name="servicoSelecionado" value="#{servico}"/>
                                 </p:commandButton>
                             </p:column>
                         </p:dataTable>
@@ -61,30 +65,22 @@
                     </p:panel>
                 </h:form>
 
-                <p:dialog header="Pet - Cadastro" widgetVar="dialogo" draggable="false" resizable="false" modal="false" closable="false">
+                <p:dialog header="Serviço - Cadastro" widgetVar="dialogo" draggable="false" resizable="false" modal="false" closable="false">
                     <h:form id="formServicos">
 
                         <h:panelGrid id="painelServico" columns="2">
                             <p:outputLabel value="Título" />
-                            <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.titulo}" />
+                            <p:inputText maxlength="50" size="30" value="#{servicoBean.servico.titulo}" />
 
                             <p:outputLabel value="Descrição" />
-                            <p:inputText maxlength="50" size="30" value="#{tarefaBean.tarefa.descricao}" />
+                            <p:inputText maxlength="50" size="30" value="#{servicoBean.servico.descricao}" />
 
-                            <p:outputLabel value="Data" />
-                            <p:inputMask mask="31/12/1999" maxlength="50" size="30" value="#{tarefaBean.tarefa.data}" />
-
-                            <p:outputLabel value="Status" />
-                            <p:selectOneMenu id="servico" value="#{tarefaBean.tarefa.status}">
-                                <f:selectItem itemLabel="Select One" itemValue="" />
-                                <f:selectItems value="#{ServicoManagedBean.listaServicos}" /> 
-                            </p:selectOneMenu>
-
-
+                            <p:outputLabel value="Preço" />
+                            <p:inputNumber maxlength="50" size="30" minValue="00.00" symbol="R$" symbolPosition="p" value="#{servicoBean.servico.preco}" />
                         </h:panelGrid>
 
                         <h:panelGrid columns="2">
-                            <p:commandButton value="Salvar" actionListener="#{tarefaBean.inserir()}" update=":mensagem :formServicos:painelServico :formListagemServicos:tabelaListagemServicos" />
+                            <p:commandButton value="Salvar" actionListener="#{servicoBean.inserir()}" update=":mensagem :formServicos:painelServico :formListagemServicos:tabelaListagemServicos" />
                             <p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
                         </h:panelGrid>
                     </h:form>

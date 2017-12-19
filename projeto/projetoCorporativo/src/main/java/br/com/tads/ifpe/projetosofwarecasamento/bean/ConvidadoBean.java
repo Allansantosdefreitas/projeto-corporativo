@@ -5,8 +5,11 @@
  */
 package br.com.tads.ifpe.projetosofwarecasamento.bean;
 
+import br.com.tads.ifpe.projetosofwarecasamento.Papel;
+import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
 import br.com.tads.ifpe.projetosofwarecasamento.repository.ConvidadoRepository;
 import br.com.tads.ifpe.projetosofwarecasamento.model.Convidado;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.GrupoRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +28,19 @@ import org.omnifaces.util.Messages;
 public class ConvidadoBean implements Serializable{
     
     private Convidado convidado;
+    private Casamento casamento;
     private List<Convidado> listaConvidado;
     
     @EJB
     private ConvidadoRepository convidadoRepository;
     
+    @EJB
+    private GrupoRepository grupoRepository;
+    
     @PostConstruct
     public void constroi(){
         convidado = new Convidado();
+        casamento = new Casamento();
         
         listaConvidado = new ArrayList<>();
     }
@@ -57,6 +65,12 @@ public class ConvidadoBean implements Serializable{
         
         try{
             
+            //Salva o casamento nos conjuges
+            convidado.setCasamento(casamento);
+            
+            //Atribui os papéis
+            convidado.setGrupo(grupoRepository.getGrupo(new String[]{Papel.CONVIDADO}));
+
             convidadoRepository.inserir(convidado);
             
             Messages.addGlobalInfo("cadastrado com sucesso!");

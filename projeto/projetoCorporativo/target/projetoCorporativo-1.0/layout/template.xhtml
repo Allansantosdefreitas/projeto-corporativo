@@ -29,12 +29,21 @@
                         
                         <p:menuitem value="Home" url="/faces/index.xhtml" icon="ui-icon-home" />
                         
+                        <p:submenu label="Cadastros" icon="ui-icon-document" rendered="#{empty request.remoteUser}">
+                            <p:menuitem value="Convidado" url="/faces/paginas/publico/cadastrarConvidado.xhtml" />
+                            <p:menuitem value="Profissional" url="/faces/paginas/publico/cadastrarProfissional.xhtml" />
+                        </p:submenu>
+                        
                         <p:submenu label="Gerenciar" icon="ui-icon-document" rendered="#{facesContext.externalContext.isUserInRole('profissional')}">
                             <p:menuitem value="Serviços" url="/faces/paginas/profissional/servicos.xhtml" />
                         </p:submenu>
 
                         <p:submenu label="Consultar" icon="ui-icon-pencil" rendered="#{facesContext.externalContext.isUserInRole('conjuge')}">
                             <p:menuitem value="Casamento" url="/faces/paginas/noivos/casamento.xhtml" />
+                            <p:menuitem value="Convidados" url="/faces/paginas/noivos/convidados.xhtml" />
+                            <p:menuitem value="Convite" url="/faces/paginas/noivos/convite.xhtml" />
+                            <p:menuitem value="Profissionais" url="/faces/paginas/noivos/profissionais.xhtml" />
+                            <p:menuitem value="Serviços" url="/faces/paginas/noivos/servicos.xhtml" />
                             <p:menuitem value="Tarefas" url="/faces/paginas/noivos/tarefas.xhtml" />
                         </p:submenu>
 
