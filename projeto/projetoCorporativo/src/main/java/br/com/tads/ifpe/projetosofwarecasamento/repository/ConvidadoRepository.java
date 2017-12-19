@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 @Stateless
-@DeclareRoles({CONJUGE, PROFISSIONAL, CONVIDADO})
+@DeclareRoles({CONJUGE, CONVIDADO})
 public class ConvidadoRepository extends Repository<Convidado> {
 
     public ConvidadoRepository() {

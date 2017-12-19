@@ -6,6 +6,7 @@
 package testesJUNIT;
 
 import br.com.tads.ifpe.projetosofwarecasamento.model.Casamento;
+import br.com.tads.ifpe.projetosofwarecasamento.repository.CasamentoRepository;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -28,67 +29,63 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CasamentoTest {
 
-    private static EntityManagerFactory emf;
-    private EntityManager em;
-    private EntityTransaction et;
-    private static Logger logger;
-    private Casamento casamento = new Casamento();
+
+    CasamentoRepository casamentoRepository = new CasamentoRepository();
 
     public CasamentoTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-        emf.close();
-    }
-
-    @Before
-    public void setUp() {
-        logger = Logger.getGlobal();
-        logger.setLevel(Level.INFO);
-
-        emf = Persistence.createEntityManagerFactory("projetoSoftwareCasamentoPU"); // nome da PU
-        //DbUnitUtil.inserirDados();
-
-        em = emf.createEntityManager();
-        et = em.getTransaction();
-        et.begin();
-
-    }
-
-    @After
-    public void tearDown() {
-
-        try {
-            et.commit();
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, ex.getMessage());
-
-            if (et.isActive()) {
-                et.rollback();
-            }
-        } finally {
-            em.close();
-            em = null;
-            et = null;
-        }
-    }
+//    @BeforeClass
+//    public static void setUpClass() {
+//    }
+//
+//    @AfterClass
+//    public static void tearDownClass() {
+//        emf.close();
+//    }
+//
+//    @Before
+//    public void setUp() {
+//        logger = Logger.getGlobal();
+//        logger.setLevel(Level.INFO);
+//
+//        emf = Persistence.createEntityManagerFactory("projetoSoftwareCasamentoPU"); // nome da PU
+//        //DbUnitUtil.inserirDados();
+//
+//        em = emf.createEntityManager();
+//        et = em.getTransaction();
+//        et.begin();
+//
+//    }
+//
+//    @After
+//    public void tearDown() {
+//
+//        try {
+//            et.commit();
+//        } catch (Exception ex) {
+//            logger.log(Level.SEVERE, ex.getMessage());
+//
+//            if (et.isActive()) {
+//                et.rollback();
+//            }
+//        } finally {
+//            em.close();
+//            em = null;
+//            et = null;
+//        }
+//    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-//    @Test
-//    public void a_inserirCasamentoValidoEM() {
-//
-//        casamento = preencherCasamento();
-//        em.persist(casamento);
-//
-//        assertNotNull(casamento);
-//    }
+    @Test
+    public void a_inserirCasamentoValidoEM() {
+
+        Casamento casamento = preencherCasamento();
+      
+        assertNotNull(casamento);
+    }
 
     /* Tem que ajeitar aqui..falta pegar o id da última entidade inserida para
         atualizar e não criar uma nova entidade */
@@ -122,13 +119,21 @@ public class CasamentoTest {
 //        assertNull(casamento);
 //    }
 
-//    private static Casamento preencherCasamento() {
-//
-//        // Preenchendo attrs
-//        Casamento casamento = new Casamento();
-//        casamento.setNome("Marriage of OUR Dreams");
-//
-//        return casamento;
-//    }
+    private static Casamento preencherCasamento() {
+
+        // Preenchendo attrs
+        Casamento casamento = new Casamento();
+        CasamentoRepository casamentoRepository = new CasamentoRepository();
+        
+        casamento.setNome("Marriage of OUR Dreams");
+        //casamento.setCodigo("$sskljdfj893u43kldfss$");
+
+        casamentoRepository.inserir(casamento);
+          
+//        Conjuge conjuge = new Conjuge();
+     
+
+        return casamento;
+    }
 
 }

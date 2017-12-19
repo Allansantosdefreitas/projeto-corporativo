@@ -8,7 +8,7 @@ import javax.annotation.security.DeclareRoles;
 import javax.ejb.Stateless;
 
 @Stateless
-@DeclareRoles({CONJUGE, PROFISSIONAL, CONVIDADO})
+@DeclareRoles({CONJUGE, CONVIDADO})
 public class ConviteRepository extends Repository<Convite> {
 
     public ConviteRepository() {
